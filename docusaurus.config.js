@@ -4,13 +4,13 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer'
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    noIndex: true,
+  noIndex: true,
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
@@ -74,7 +74,7 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+  /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
@@ -91,7 +91,7 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
@@ -149,6 +149,6 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
-};
+}
 
-export default config;
+export default config

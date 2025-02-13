@@ -1,0 +1,71 @@
+---
+id: get-access-token
+title: "Obtain OAuth2 Access Token"
+description: "Retrieves an access token using client credentials."
+sidebar_label: "Obtain OAuth2 Access Token"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVcFu2zoQ/BVie5UsRbWTVjc3pwAFYtTOoTAMg6LWFmuZVElKtmHo34ulrDwlL0mDoBfLlHaWs7ND7hlytMLIykmtIIUf6IzEBi3jinEh0Frm9A4Vq61UWyZKicoxYTBH5SQv7QgC0BUaThnuckhhi27qkQsCQgCOby2kS5jWriCU8LGwCsDg7xqt+6bzE6Rnv5QGc0idqTEAoZVD5egTr6ryAoyO4eFwCDfa7MPalKiEzglzBisK3HP6504VQgo6+4XCQQCVIY5OoqWvW8OVW3cxj7HWGam2EAAe+b4q6VVX7XpQLbRB/1bmb4PzfBBsURh07wFYof9GazFd/JjOpj9n3x/m0LbBQLflsLYh1edM+o1WbdtlsJVWtpMniWN6PHXGvPY93dQl64PZQbriiUvg1Z79spTl/S3qsq67rG+qkcSZmFxPNqFIvohw/Hkch18xmYT5JMPNjcCrPLshYX2qdzT9G3KDhhB4rKRBu5ZDBlI53KIZQr5cj+P4Q63rxB+/pPedangp8xdO3L8TGY3R5m3CsqOx7mh4VQi0fkL2zYoLZFvZoHqhEnZAg0xpx/wmF0HaAPboCk13SaWtp81dASlEvHZFpP1vk0S95SyaBg1dMWeoTQkpFM5VNo0iXsmR487wjKsdH9ld5FcVP1VlbSPLVZ7pIwTPtF9Q0IyfZmVt2XR2x/rAdkW7idpId/LbabrTkltf2e2gRelyNYydU0M6zV9F/Ncsqi/5H6k5IuvryrmvQ+zQjCS6zUibbZRrERVuX0ZmI65vxl8/WRSEDcejMQSwKfXBbyNe3Ju0fPiAeK/1hM6Cz/zE8ik8XhesV5n1MsOl+1JttOckXWehZ+2AAKjfnSzxKB5drZM4GYfxJExumisyKflmz701Fd9TkvvMcanYvZefdQOK9RPqmZsfj9cH5+GlkQ6PLqpKLhVR8s48X6y8BBKMRufl2VDDO/FWARRk+3QJ53PGLT6Ysm3p9e8aDfluFUDDjeQZybNctQEUyHM03pI7PEEKt10J4aIbBA0va6L09zHaBn0K0qhyr4D9VUMWfzyqs/v5AgLILrN8r3PCDDIHwwXRbts/RmfzcA==
+sidebar_class_name: "post api-method"
+info_path: docs/api/tatrapayplus-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Obtain OAuth2 Access Token"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/oauth/v2/token"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves an access token using client credentials.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/x-www-form-urlencoded":{"schema":{"type":"object","properties":{"grant_type":{"type":"string","example":"client_credentials"},"client_id":{"type":"string","example":"dd"},"client_secret":{"type":"string","example":"dd"},"scope":{"type":"string","example":"TATRAPAYPLUS"}},"required":["grant_type","client_id","client_secret","scope"]}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful response with access token","content":{"application/json":{"schema":{"type":"object","properties":{"access_token":{"type":"string","example":"20bc565f-c28c-4340-9e25-d5bef7ce1db7"},"token_type":{"type":"string","example":"Bearer"},"expires_in":{"type":"integer","example":86400},"scope":{"type":"string","example":"TATRAPAYPLUS"}}}}}},"400":{"description":"Invalid client credentials","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","example":"invalid_client"},"error_description":{"type":"string","example":"The given client credentials were not valid"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

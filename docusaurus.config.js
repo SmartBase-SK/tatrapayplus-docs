@@ -46,6 +46,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          docItemComponent: "@theme/ApiItem",
           editUrl:
             'https://github.com/SmartBase-SK/tatrapayplus-docs/blob/main/',
         },
@@ -55,7 +56,26 @@ const config = {
       }),
     ],
   ],
-
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      /** @type {import('docusaurus-plugin-openapi-docs').OpenApiPlugin} */
+      ({
+        id: 'api', // plugin id
+        docsPluginId: 'classic',
+        config: {
+          api: {
+            specPath: './tatrapayplus_api_sandbox.json',
+            outputDir: 'docs/api',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+            },
+          },
+        },
+      }),
+    ],
+  ],
+  themes: ["docusaurus-theme-openapi-docs"],
   themeConfig:
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -68,6 +88,14 @@ const config = {
           src: 'img/logo.webp',
         },
         items: [
+          {
+            href: '/docs/libraries/node/v1/',
+            label: 'Guides',
+          },
+          {
+            href: '/docs/api/tatrapayplus-api/',
+            label: 'API Reference',
+          },
           {
             href: 'https://github.com/SmartBase-SK/tatrapayplus-node',
             label: 'GitHub',
@@ -116,6 +144,23 @@ const config = {
 
         indexName: 'YOUR_INDEX_NAME',
       },
+      languageTabs: [
+        {
+          highlight: 'javascript',
+          language: 'javascript',
+          logoClass: 'javascript',
+        },
+        {
+          highlight: 'python',
+          language: 'python',
+          logoClass: 'python',
+        },
+        {
+          highlight: 'php',
+          language: 'php',
+          logoClass: 'php',
+        }
+      ]
     }),
 }
 

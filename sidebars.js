@@ -1,5 +1,4 @@
 // @ts-check
-
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /**
@@ -20,6 +19,7 @@ const sidebars = {
     'libraries/node/v1/available_methods',
     'libraries/node/v1/create_payment'
   ],
+  apisidebar: require('./docs/api/sidebar.ts').default,
 };
 
 export default sidebars;

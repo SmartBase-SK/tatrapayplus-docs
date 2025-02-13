@@ -1,0 +1,151 @@
+import Button from '@site/src/components/Button';
+
+# Create payment
+
+To be able to create payment you need to call `sdk.createPayment`.
+
+```javascript
+const sdk = new TBPlusSDK(
+  process.env.API_KEY as string,
+  process.env.API_SECRET as string,
+);
+const { data, error } = await sdk.createPayment(
+  {
+    bankTransfer: {
+    },
+    payLater: {
+      order: {
+        orderNo: "132456",
+        orderItems: [
+          {
+            itemDetail: {
+              itemDetailSK: {
+                itemName: "Jablko",
+              },
+            },
+            quantity: 1,
+            totalItemPrice: 10000,
+          },
+        ],
+      },
+    },
+    userData: {
+      firstName: "Jozko",
+      lastName: "Hruska",
+      phone: "+421911123456",
+    },
+    cardDetail: {
+      cardHolder: "Jozko Hruska",
+    },
+    basePayment: {
+      endToEnd: "/VS0123456789/SS0123456789/KS123456",
+      instructedAmount: {
+        amountValue: 10000,
+        currency: "EUR",
+      },
+    },
+  },
+  REDIRECT_URI,
+);
+```
+
+## Common data
+
+Payment gateway supports multiple payment methods and based on your need you can send more or less info in your `createPayment` call.
+However, some of the data are mandatory for all payment methods.
+
+```javascript
+basePayment: {
+  endToEnd: "/VS0123456789/SS0123456789/KS123456",
+  instructedAmount: {
+    amountValue: 99.99,
+    currency: "EUR",
+  },
+},
+```
+
+:::warning
+
+Most common issue is that value in `instructedAmount.amountValue` field is not rounded properly and API will reject such a data.
+Please round your data to **2 decimals places** or 0 decimals places in case of 'HUF', 'JPY', 'TWD' currencies.
+
+:::
+
+## Bank transfer and QR pay
+
+For this payment method you need to define attribute `bankTransfer`. **It can be empty** or contains additional information.
+If you omit this attribute, bank transfer wouldn't be shown.
+
+```javascript
+bankTransfer: {
+  remittanceInformationUnstructured: "Additional informations"
+}
+```
+
+## Card pay
+
+This payment methods requires `cardDetail.cardHolder`, `userData.firstName` and `userData.lastName`.
+One of `userData.email` or `userData.phone` is required, based on these data are send notifications to customers.
+
+:::tip
+
+The SDK automatically strips diacritical marks from characters in the cardDetail.cardHolder field, so **you don't need** to handle this conversion yourself.
+
+:::
+
+```javascript
+userData: {
+  firstName: "Jozko",
+  lastName: "Hruska",
+  email: "test@tatrabanka.ok",
+  phone: "+421911123456",
+},
+cardDetail: {
+  cardHolder: "Jozko Hruska",
+}
+```
+
+## PayLater (Na splátky<sup>TB</sup>)
+
+This payment method requires information about items that were bought by customer.
+This structure is more complex and description of all fields can be found in [API reference](/docs/api/initiate-payment).
+
+:::warning
+
+The API will reject requests where `instructedAmount.amountValue` doesn't match the **sum of all totalItemPrice** values.
+
+:::
+
+```javascript
+payLater: {
+  order: {
+    orderNo: "111",
+    orderItems: [
+      {
+        quantity: 1,
+        totalItemPrice: 200,
+        itemDetail: {
+          itemDetailSK: {
+            itemName: "Stol",
+            itemDescription: "biely stol",
+          },
+          itemDetailEN: {
+            itemName: "Table",
+            itemDescription: "White table",
+          },
+        },
+        itemInfoURL: "https://url.sk",
+      },
+    ],
+    preferredLoanDuration: 24,
+    downPayment: 10,
+  },
+  capacityInfo: {
+    monthlyIncome: 1000,
+    monthlyExpenses: 0,
+    numberOfChildren: 0,
+  },
+}
+```
+
+<Button label="See full API reference" link="/docs/api/initiate-payment"/>

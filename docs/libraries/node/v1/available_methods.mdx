@@ -1,3 +1,5 @@
+import Button from '@site/src/components/Button';
+
 # Getting available methods
 
 In this payment gateway, user will select preferred payment option directly in payment gateway and **NOT in eshop**.
@@ -8,7 +10,7 @@ Therefor you want to inform customer about available payment methods and show di
 
 For this purpose you can retrieve available payment methods with this helper:
 ```javascript
-const availablePaymentMethods = await sdk.getAvailablePaymentMethods(
+const {data: availablePaymentMethods} = await sdk.getAvailablePaymentMethods(
   {
     countryCode: "HU", 
     totalAmount: 50,
@@ -19,8 +21,10 @@ const availablePaymentMethods = await sdk.getAvailablePaymentMethods(
 
 If you want to get all payment methods you can call it without restrictions:
 ```javascript
-const availablePaymentMethods = await sdk.getAvailablePaymentMethods();
+const {data: availablePaymentMethods} = await sdk.getAvailablePaymentMethods();
 ```
 
 Based on response from these functions you should display info to the user about available methods, 
-and then you should create payment and show payment gateway to the user.
+and then you should create payment.
+
+<Button label="See full API reference" link="/docs/api/get-methods"/>

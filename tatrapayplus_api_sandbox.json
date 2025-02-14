@@ -79,7 +79,16 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "JavaScript",
+            "label": "SDK",
+            "source": {
+              "$ref": "./code_samples/node/createPayment.js"
+            }
+          }
+        ]
       }
     },
     "/v1/payments/methods": {

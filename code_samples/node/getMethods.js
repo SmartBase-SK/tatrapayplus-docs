@@ -1,4 +1,4 @@
-import { TBPlusSDK } from "tatrapayplus-node"
+import { TBPlusSDK } from "@tatrabanka/tatrapayplus-node"
 
 const API_KEY = "<REPLACE FROM TB PORTAL>";
 const API_SECRET = "<REPLACE FROM TB PORTAL>";

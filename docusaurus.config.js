@@ -11,8 +11,8 @@ import { themes as prismThemes } from 'prism-react-renderer'
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   noIndex: true,
-  title: 'Simplify Payments, Amplify Growth',
-  tagline: 'Powerful SDKs for seamless payment integration',
+  title: 'Tatrapay+ payment gateway',
+  tagline: 'Create the future of banking with us.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -110,8 +110,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Guides',
+                to: '/docs/libraries/node/v1',
+              },
+              {
+                label: 'API Reference',
+                to: '/docs/api/tatrapayplus-api',
               },
             ],
           },

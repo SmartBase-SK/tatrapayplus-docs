@@ -5,6 +5,9 @@ import Button from '@site/src/components/Button';
 To be able to create payment you need to call `sdk.createPayment`.
 
 ```javascript
+const API_KEY = "<REPLACE FROM TB PORTAL>"
+const API_SECRET = "<REPLACE FROM TB PORTAL>"
+const REDIRECT_URI = "<REPLACE FROM TB PORTAL>"
 const sdk = new TBPlusSDK(
   process.env.API_KEY as string,
   process.env.API_SECRET as string,
@@ -71,6 +74,18 @@ Please round your data to **2 decimals places** or 0 decimals places in case of 
 
 :::
 
+### Redirect URI
+
+Redirect URI is used as return address after customer finish payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/node/v1/process_payment).
+
+If your application serves multiple locales with distinct URIs—for example, https://example.com for one locale and https://example.com/de/ for German users—you must register both URIs in the developer portal.
+Then, when making a `createPayment` request, be sure to include the redirect URI that matches the user's locale.
+:::warning
+
+This URI must exactly match the URI defined in the [Developer Portal](https://developer.tatrabanka.sk/pages/devportal/sk/#/)
+
+:::
+
 ## Bank transfer and QR pay
 
 For this payment method you need to define attribute `bankTransfer`. **It can be empty** or contains additional information.
@@ -89,7 +104,7 @@ One of `userData.email` or `userData.phone` is required, based on these data are
 
 :::tip
 
-The SDK automatically strips diacritical marks from characters in the cardDetail.cardHolder field, so **you don't need** to handle this conversion yourself.
+The SDK automatically strips diacritical marks from characters in the `cardDetail.cardHolder` field, so **you don't need** to handle this conversion yourself.
 
 :::
 
@@ -147,5 +162,7 @@ payLater: {
   },
 }
 ```
+
+## Response
 
 <Button label="See full API reference" link="/docs/api/initiate-payment"/>

@@ -10,7 +10,7 @@ import { themes as prismThemes } from 'prism-react-renderer'
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  noIndex: true,
+  // noIndex: true,
   title: 'Tatrapay+ payment gateway',
   tagline: 'Create the future of banking with us.',
   favicon: 'img/favicon.ico',

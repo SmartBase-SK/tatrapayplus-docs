@@ -4,6 +4,7 @@ const REDIRECT_URI = 'https://tatrabanka.sk/wc-api/wc_gateway_tatrapayplus/';
 const sdk = new TBPlusSDK(
   API_KEY,
   API_SECRET,
+  "192.0.2.123"
 );
 const { data, error } = await sdk.createPayment(
   {

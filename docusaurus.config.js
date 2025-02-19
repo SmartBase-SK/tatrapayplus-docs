@@ -140,13 +140,9 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
       algolia: {
-        // The application ID provided by Algolia
-        appId: 'YOUR_APP_ID',
-
-        // Public API key: it is safe to commit it
-        apiKey: 'YOUR_SEARCH_API_KEY',
-
-        indexName: 'YOUR_INDEX_NAME',
+        appId: 'B6QCVQHQ3K',
+        apiKey: '1720d9324957e8a6622cda395b772093',
+        indexName: 'smartbase-skio',
       },
       languageTabs: [
         {

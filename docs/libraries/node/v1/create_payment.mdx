@@ -4,13 +4,16 @@ import Button from '@site/src/components/Button';
 
 To be able to create payment you need to call `sdk.createPayment`.
 
+<details>
+    <summary>Click to see example for all payment methods.</summary>
 ```javascript
-const API_KEY = "<REPLACE FROM TB PORTAL>"
-const API_SECRET = "<REPLACE FROM TB PORTAL>"
-const REDIRECT_URI = "<REPLACE FROM TB PORTAL>"
+const API_KEY = "REPLACE FROM TB PORTAL"
+const API_SECRET = "REPLACE FROM TB PORTAL"
+const REDIRECT_URI = "REPLACE FROM TB PORTAL"
 const sdk = new TBPlusSDK(
   process.env.API_KEY as string,
   process.env.API_SECRET as string,
+  "192.0.2.123"
 );
 const { data, error } = await sdk.createPayment(
   {
@@ -51,6 +54,7 @@ const { data, error } = await sdk.createPayment(
   REDIRECT_URI,
 );
 ```
+</details>
 
 ## Common data
 
@@ -74,11 +78,42 @@ Please round your data to **2 decimals places** or 0 decimals places in case of 
 
 :::
 
+### Modify language and preferred method
+
+By default Tatrapay+ gateway will show all available payment methods and payment gateway is shown in default **Slovak** language.
+If you want to change this behaviour you can pass `language` and `preferredMethod` param to `createPayment`.
+
+If `preferredMethod` is available user will be directly navigated to this method.
+
+<details>
+    <summary>Show gateway in English with bank transfer method</summary>
+```javascript
+const API_KEY = "REPLACE FROM TB PORTAL"
+const API_SECRET = "REPLACE FROM TB PORTAL"
+const REDIRECT_URI = "REPLACE FROM TB PORTAL"
+const sdk = new TBPlusSDK(
+  process.env.API_KEY as string,
+  process.env.API_SECRET as string,
+  "192.0.2.123"
+);
+const { data, error } = await sdk.createPayment(
+  ...
+  REDIRECT_URI,
+  'en',
+  'BANK_TRANSFER',
+);
+```
+</details>
+
 ### Redirect URI
 
 Redirect URI is used as return address after customer finish payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/node/v1/process_payment).
 
-If your application serves multiple locales with distinct URIs—for example, https://example.com for one locale and https://example.com/de/ for German users—you must register both URIs in the developer portal.
+If your application serves multiple locales with distinct URIs for example:
+- https://example.com for one locale
+- https://example.com/de/ for German users
+
+you must register both URIs in the developer portal.
 Then, when making a `createPayment` request, be sure to include the redirect URI that matches the user's locale.
 :::warning
 
@@ -86,7 +121,9 @@ This URI must exactly match the URI defined in the [Developer Portal](https://de
 
 :::
 
-## Bank transfer and QR pay
+## Specific payment method data
+
+### Bank transfer and QR pay
 
 For this payment method you need to define attribute `bankTransfer`. **It can be empty** or contains additional information.
 If you omit this attribute, bank transfer wouldn't be shown.
@@ -97,7 +134,7 @@ bankTransfer: {
 }
 ```
 
-## Card pay
+### Card pay
 
 This payment methods requires `cardDetail.cardHolder`, `userData.firstName` and `userData.lastName`.
 One of `userData.email` or `userData.phone` is required, based on these data are send notifications to customers.
@@ -120,7 +157,7 @@ cardDetail: {
 }
 ```
 
-## PayLater (Na splátky<sup>TB</sup>)
+### PayLater (Na splátky<sup>TB</sup>)
 
 This payment method requires information about items that were bought by customer.
 This structure is more complex and description of all fields can be found in [API reference](/docs/api/initiate-payment).
@@ -164,5 +201,37 @@ payLater: {
 ```
 
 ## Response
+
+After you create reqeust to initiate payment you receive following data:
+```json
+{
+  "paymentId": "580ff61e-efdd-40e5-8bc4-c373d59cf0c2",
+  "tatraPayPlusUrl": "https://api.tatrabanka.sk/tatrapayplus/production/v1/auth?paymentId=580ff61e-efdd-40e5-8bc4-c373d59cf0c2&client_id=l7ba7ffa0bf66b49b88d17dfe144955f54&hmac=19be0bf2a2e5d5e8626c01203ba747648d8fea0fd0106e51786a13183e9e91c8",
+  "availablePaymentMethods": [
+    {
+        "isAvailable": true,
+        "paymentMethod": "CARD_PAY"
+    },
+    {
+        "isAvailable": false,
+        "reasonCodeMethodAvailabilityDescription": "Method is not in the partner contract",
+        "paymentMethod": "PAY_LATER",
+        "reasonCodeMethodAvailability": "NO_CONTRACT"
+    },
+    {
+        "isAvailable": true,
+        "paymentMethod": "BANK_TRANSFER"
+    },
+    {
+        "isAvailable": true,
+        "paymentMethod": "QR_PAY"
+    }
+]
+}
+```
+You should save `paymentId` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/node/v1/process_payment).
+Then you have two options of displaying payment gateway:
+1. Simply redirect user to gateway, field `tatraPayPlusUrl`.
+2. Show payment gateway in iframe.
 
 <Button label="See full API reference" link="/docs/api/initiate-payment"/>

@@ -1,1 +1,36 @@
-# Saving card details
+# Saving card details(ComfortPay)
+
+ComfortPay is separate service that gives ability to remember user credit card for future usage.
+
+To be able to save user credit card you need to do one payment and specify parameter `cardDetail.comfortPay.registerForComfortPay`.
+
+<details>
+    <summary>First payment to register user for ComfortPay</summary>
+```javascript
+const { data, error } = await sdk.createPayment(
+  {
+    userData: {
+      firstName: "Jozko",
+      lastName: "Hruska",
+      phone: "+421911123456",
+    },
+    cardDetail: {
+      cardHolder: "Jozko Hruska",
+      // highlight-start
+      comfortPay: {
+        registerForComfortPay: true
+      }
+      // highlight-end
+    },
+    basePayment: {
+      endToEnd: "/VS0123456789/SS0123456789/KS123456",
+      instructedAmount: {
+        amountValue: 10000,
+        currency: "EUR",
+      },
+    },
+  },
+  REDIRECT_URI,
+);
+```
+</details>

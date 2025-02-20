@@ -54,8 +54,11 @@ We recommend setting up a scheduled task that retrieves all pending payments fro
 Using the saved `paymentId` with the `getPaymentStatus` method, you can obtain the current status and take the appropriate action in your system.
 
 Recommended pooling rates based on **age of orders**:
+
 | Time Range            | Polling Frequency   |
 |-----------------------|---------------------|
 | First hour            | Every 5 minutes     |
 | 1 hour - 24 hours     | Every hour          |
 | After 24 hours        | 5 times per day     |
+
+<Button label="See full API reference" link="/docs/api/get-payment-intent-status"/>

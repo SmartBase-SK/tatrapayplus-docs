@@ -18,11 +18,12 @@
     "@docusaurus/core": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@mdx-js/react": "^3.0.0",
-    "@tatrabanka/tatrapayplus-node": "^0.0.4",
+    "@tatrabanka/tatrapayplus-node": "^0.0.5",
     "clsx": "^2.0.0",
     "docusaurus-plugin-openapi-docs": "^4.3.4",
     "docusaurus-theme-openapi-docs": "^4.3.4",
     "prism-react-renderer": "^2.3.0",
+    "raw-loader": "^4.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

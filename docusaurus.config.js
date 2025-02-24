@@ -36,7 +36,7 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'sk'],
   },
 
   presets: [
@@ -100,6 +100,10 @@ const config = {
           src: 'img/logo.webp',
         },
         items: [
+          {
+            type: 'localeDropdown',
+            position: 'left',
+          },
           {
             href: '/docs/libraries/node/v1/',
             label: 'Guides',

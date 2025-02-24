@@ -1,25 +1,16 @@
-import { TBPlusSDK } from "@tatrabanka/tatrapayplus-node";
-
-const API_KEY = "REPLACE FROM TB PORTAL";
-const API_SECRET = "REPLACE FROM TB PORTAL";
-const sdk = new TBPlusSDK(
-  API_KEY,
-  API_SECRET,
-  "192.0.2.123",
-)
 // highlight-start
 const {response} = await sdk.setAppearances({
   surfaceAccent: {
-    colorDarkMode: '#fff', //🟥
-    colorLightMode: '#fff',
+    colorDarkMode: '#ff0000', //🟥
+    colorLightMode: '#ff0000',
   },
   tintAccent: {
-    colorDarkMode: '#fff',
-    colorLightMode: '#fff',
+    colorDarkMode: '#00ff00 ', //🟩
+    colorLightMode: '#00ff00',
   },
   tintOnAccent: {
-    colorDarkMode: '#fff',
-    colorLightMode: '#fff',
+    colorDarkMode: '#0000ff', //🟦
+    colorLightMode: '#0000ff',
   }
 })
 // highlight-end

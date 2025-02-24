@@ -1,4 +1,4 @@
-# Saving card details(ComfortPay)
+# Remember card(ComfortPay)
 
 ComfortPay is separate service that gives ability to remember user credit card for future usage.
 
@@ -70,10 +70,13 @@ const {simpleStatus, savedCard, data, error} = await sdk.getPaymentStatus(paymen
 
 ## Use saved token
 
-After you saved `cid` token to customer. You should show customer saved cards in your website. When user select some of the saved card you need to pass `cid` to `createPayment`.
+After you saved `cid` token to customer. You should show customer saved cards in your website. When user select some of the saved card you need to pass `cid` to `generateSignedCardIdFromCid` and result of this function can be passed to `comfortPay.signedCardId`.
 
 ```javascript
-const cidFromPersistentStorage = db.customer.get('cid')
+// highlight-start
+const cidFromPersistentStorage = db.customer.get('cid');
+const signedCardId = sdk.generateSignedCardIdFromCid(cidFromPersistentStorage);
+// highlight-end
 const { data, error } = await sdk.createPayment(
   {
     userData: {
@@ -85,7 +88,7 @@ const { data, error } = await sdk.createPayment(
       cardHolder: "Jozko Hruska",
       // highlight-start
       comfortPay: {
-        signedCardId: cidFromPersistentStorage
+        signedCardId: signedCardId
       }
       // highlight-end
     },

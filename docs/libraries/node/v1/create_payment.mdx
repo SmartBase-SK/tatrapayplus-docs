@@ -1,4 +1,6 @@
 import Button from '@site/src/components/Button';
+import CodeBlock from '@theme/CodeBlock';
+import createPayment from '!!raw-loader!@site/code_samples/node/v1/createPayment';
 
 # Create payment
 
@@ -6,54 +8,7 @@ To be able to create payment you need to call `sdk.createPayment`.
 
 <details>
     <summary>Click to see example for all payment methods.</summary>
-```javascript
-const API_KEY = "REPLACE FROM TB PORTAL"
-const API_SECRET = "REPLACE FROM TB PORTAL"
-const REDIRECT_URI = "REPLACE FROM TB PORTAL"
-const sdk = new TBPlusSDK(
-  process.env.API_KEY as string,
-  process.env.API_SECRET as string,
-  "192.0.2.123"
-);
-const { data, error } = await sdk.createPayment(
-  {
-    bankTransfer: {
-    },
-    payLater: {
-      order: {
-        orderNo: "132456",
-        orderItems: [
-          {
-            itemDetail: {
-              itemDetailSK: {
-                itemName: "Jablko",
-              },
-            },
-            quantity: 1,
-            totalItemPrice: 10000,
-          },
-        ],
-      },
-    },
-    userData: {
-      firstName: "Jozko",
-      lastName: "Hruska",
-      phone: "+421911123456",
-    },
-    cardDetail: {
-      cardHolder: "Jozko Hruska",
-    },
-    basePayment: {
-      endToEnd: "/VS0123456789/SS0123456789/KS123456",
-      instructedAmount: {
-        amountValue: 10000,
-        currency: "EUR",
-      },
-    },
-  },
-  REDIRECT_URI,
-);
-```
+    <CodeBlock language="jsx">{createPayment}</CodeBlock>
 </details>
 
 ## Common data
@@ -80,29 +35,25 @@ Please round your data to **2 decimals places** or 0 decimals places in case of 
 
 ### Modify language and preferred method
 
-By default Tatrapay+ gateway will show all available payment methods and payment gateway is shown in default **Slovak** language.
+By default, Tatrapay+ gateway will show all available payment methods and payment gateway is shown in default **Slovak** language.
 If you want to change this behaviour you can pass `language` and `preferredMethod` param to `createPayment`.
 
 If `preferredMethod` is available user will be directly navigated to this method.
 
 <details>
     <summary>Show gateway in English with bank transfer method</summary>
+
 ```javascript
-const API_KEY = "REPLACE FROM TB PORTAL"
-const API_SECRET = "REPLACE FROM TB PORTAL"
-const REDIRECT_URI = "REPLACE FROM TB PORTAL"
-const sdk = new TBPlusSDK(
-  process.env.API_KEY as string,
-  process.env.API_SECRET as string,
-  "192.0.2.123"
-);
 const { data, error } = await sdk.createPayment(
-  ...
+  ...,
   REDIRECT_URI,
+    // highlight-start
   'en',
   'BANK_TRANSFER',
+    // highlight-end
 );
 ```
+
 </details>
 
 ### Redirect URI

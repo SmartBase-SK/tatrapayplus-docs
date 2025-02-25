@@ -1,3 +1,6 @@
+import CodeBlock from '@theme/CodeBlock';
+import testTb from '!!raw-loader!@site/code_samples/node/v1/testTb.mjs';
+
 # Getting started
 
 To be able to use and test payment gateway you need to have **Client ID** and **Client secret** from [TB developer portal](https://developer.tatrabanka.sk/).
@@ -14,33 +17,9 @@ npm install tatrapayplus-node
 You can test your installation with this minimal working setup.
 
 1. If you haven’t already, create an Account and Application in [TB developer portal](https://developer.tatrabanka.sk/).
-2. Copy the following code into a new file `test_tb.mjs`. Replace API_KEY, API_SECRET and REDIRECT_URI with values from your account.
-    ```javascript
-    import { TBPlusSDK } from "@tatrabanka/tatrapayplus-node";
-   
-    const API_KEY = "<REPLACE FROM TB PORTAL>";
-    const API_SECRET = "<REPLACE FROM TB PORTAL>";
-    const REDIRECT_URI = "<REPLACE FROM TB PORTAL>";
-    const sdk = new TBPlusSDK(
-      API_KEY,
-      API_SECRET,
-      "192.0.2.123"
-    );
-    const { data, error } = await sdk.createPayment(
-      {
-        bankTransfer: {},
-        basePayment: {
-          endToEnd: "/VS0123456789/SS0123456789/KS123456",
-          instructedAmount: {
-            amountValue: 10,
-            currency: "EUR",
-          },
-        },
-      },
-      REDIRECT_URI,
-    );
-    console.log(JSON.stringify(data))
-    ```
+2. Copy the following code into a new file `test_tb.mjs`. Replace **API_KEY**, **API_SECRET** and **REDIRECT_URI** with values from your account.
+    <CodeBlock language="jsx">{testTb}</CodeBlock>
+
 3. Run: `node test_tb.mjs`
 4. If the command is successful, you’ll see the API response in JSON format like this:
     ```json

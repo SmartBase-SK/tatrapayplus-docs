@@ -15,17 +15,17 @@
  */
 const sidebars = {
   nodeSidebar: [
-    'libraries/node/v1/index',
-    'libraries/node/v1/available_methods',
-    'libraries/node/v1/create_payment',
-    'libraries/node/v1/process_payment',
-    'libraries/node/v1/save_card',
-    'libraries/node/v1/pre_authorization',
-    'libraries/node/v1/google_apple_pay',
-    'libraries/node/v1/cancel_payment',
-    'libraries/node/v1/appearances',
+    "libraries/node/v1/index",
+    "libraries/node/v1/available_methods",
+    "libraries/node/v1/create_payment",
+    "libraries/node/v1/process_payment",
+    "libraries/node/v1/save_card",
+    "libraries/node/v1/pre_authorization",
+    "libraries/node/v1/google_apple_pay",
+    "libraries/node/v1/cancel_payment",
+    "libraries/node/v1/appearances",
   ],
-  apisidebar: require('./docs/api/sidebar.ts').default,
+  apisidebar: require("./docs/api/sidebar.ts").default,
 };
 
 export default sidebars;

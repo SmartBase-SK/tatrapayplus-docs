@@ -1,4 +1,6 @@
 import Button from '@site/src/components/Button';
+import CodeBlock from '@theme/CodeBlock';
+import getAvailablePaymentMethods from '!!raw-loader!@site/code_samples/node/v1/getAvailablePaymentMethods.js';
 
 # Getting available methods
 
@@ -9,20 +11,7 @@ Therefor you want to inform customer about available payment methods and show di
 - country
 
 For this purpose you can retrieve available payment methods with this helper:
-```javascript
-const {data: availablePaymentMethods} = await sdk.getAvailablePaymentMethods(
-  {
-    countryCode: "HU", 
-    totalAmount: 50,
-    currencyCode: "USD",
-  },
-);
-```
-
-If you want to get all payment methods you can call it without restrictions:
-```javascript
-const {data: availablePaymentMethods} = await sdk.getAvailablePaymentMethods();
-```
+<CodeBlock language="jsx">{getAvailablePaymentMethods}</CodeBlock>
 
 Based on response from these functions you should display info to the user about available methods, 
 and then you should create payment.

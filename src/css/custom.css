@@ -32,3 +32,71 @@
 .tabs-container.openapi-tabs__code-container.openapi-tabs__code-container-inner:nth-child(2) {
   display: none;
 }
+
+.platforms {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.platforms__title {
+    margin: 20px auto;
+}
+
+.platforms__item {
+    box-shadow: 9px 9px 5px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 16px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    top: 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+}
+
+.platforms__item:hover {
+    box-shadow: 12px 12px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    border-color: rgba(0, 120, 215, 0.2);
+}
+
+/* Optional: add a subtle background color change */
+.platforms__item:hover {
+    background-color: #f9f9ff;
+}
+
+/* Optional: add a subtle scale effect for the content */
+.platforms__item:hover > * {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Optional: add a nice bottom border highlight */
+.platforms__item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3776AB, #68A063, #777BB3);
+    transition: width 0.3s ease;
+}
+
+.platforms__item:hover::after {
+    width: 100%;
+}
+
+.platforms__item svg {
+    width: 100%;
+    height: auto;
+}

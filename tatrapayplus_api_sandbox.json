@@ -85,7 +85,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/createPayment.js"
+              "$ref": "./code_samples/node/v1.0.0/createPayment.js"
             }
           }
         ]
@@ -151,7 +151,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/getAvailablePaymentMethods.js"
+              "$ref": "./code_samples/node/v1.0.0/getAvailablePaymentMethods.js"
             }
           }
         ]
@@ -220,7 +220,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/getPaymentStatus.js"
+              "$ref": "./code_samples/node/v1.0.0/getPaymentStatus.js"
             }
           }
         ]
@@ -295,7 +295,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/updatePayment.js"
+              "$ref": "./code_samples/node/v1.0.0/updatePayment.js"
             }
           }
         ]
@@ -361,7 +361,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/cancelPayment.js"
+              "$ref": "./code_samples/node/v1.0.0/cancelPayment.js"
             }
           }
         ]
@@ -435,7 +435,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/createPaymentDirect.js"
+              "$ref": "./code_samples/node/v1.0.0/createPaymentDirect.js"
             }
           }
         ]
@@ -503,7 +503,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/setColors.js"
+              "$ref": "./code_samples/node/v1.0.0/setColors.js"
             }
           }
         ]
@@ -571,7 +571,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/setLogo.js"
+              "$ref": "./code_samples/node/v1.0.0/setLogo.js"
             }
           }
         ]
@@ -601,7 +601,7 @@
             "lang": "JavaScript",
             "label": "SDK",
             "source": {
-              "$ref": "./code_samples/node/v1/getAccessToken.js"
+              "$ref": "./code_samples/node/v1.0.0/getAccessToken.js"
             }
           }
         ]

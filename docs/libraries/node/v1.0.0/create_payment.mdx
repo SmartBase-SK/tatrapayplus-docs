@@ -1,6 +1,6 @@
 import Button from '@site/src/components/Button';
 import CodeBlock from '@theme/CodeBlock';
-import createPayment from '!!raw-loader!@site/code_samples/node/v1/createPayment';
+import createPayment from '!!raw-loader!@site/code_samples/node/v1.0.0/createPayment';
 
 # Create payment
 
@@ -58,7 +58,7 @@ const { data, error } = await sdk.createPayment(
 
 ### Redirect URI
 
-Redirect URI is used as return address after customer finish payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/node/v1/process_payment).
+Redirect URI is used as return address after customer finish payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/node/v1.0.0/process_payment).
 
 If your application serves multiple locales with distinct URIs for example:
 - https://example.com for one locale
@@ -180,7 +180,7 @@ After you create reqeust to initiate payment you receive following data:
 ]
 }
 ```
-You should save `paymentId` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/node/v1/process_payment).
+You should save `paymentId` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/node/v1.0.0/process_payment).
 Then you have two options of displaying payment gateway:
 1. Simply redirect user to gateway, field `tatraPayPlusUrl`.
 2. Show payment gateway in iframe.

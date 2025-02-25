@@ -97,20 +97,36 @@ const config = {
         title: "Tatrapay+",
         logo: {
           alt: "Tatrapay+ Logo",
-          src: "img/logo.webp",
+          src: "img/logo-tatra-banka.png",
+          srcDark: "img/logo-tatra-banka-dark.png",
         },
         items: [
           {
-            type: "localeDropdown",
-            position: "right",
-          },
-          {
-            href: "/docs/libraries/node/v1/",
-            label: "Guides",
+            type: "dropdown",
+            label: "SDK",
+            position: "left",
+            items: [
+              {
+                label: "Node.js",
+                href: "/docs/libraries/node/v1.0.0/",
+              },
+              {
+                label: "Python(WIP)",
+                href: "/docs/libraries/python/v1.0.0/",
+              },
+              {
+                label: "PHP(WIP)",
+                href: "/docs/libraries/php/v1.0.0/",
+              },
+            ],
           },
           {
             href: "/docs/api/tatrapayplus-api/",
             label: "API Reference",
+          },
+          {
+            type: "localeDropdown",
+            position: "right",
           },
         ],
       },
@@ -122,7 +138,7 @@ const config = {
             items: [
               {
                 label: "Guides",
-                to: "/docs/libraries/node/v1",
+                to: "/docs/libraries/node/v1.0.0",
               },
               {
                 label: "API Reference",

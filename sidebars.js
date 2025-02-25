@@ -15,16 +15,18 @@
  */
 const sidebars = {
   nodeSidebar: [
-    "libraries/node/v1/index",
-    "libraries/node/v1/available_methods",
-    "libraries/node/v1/create_payment",
-    "libraries/node/v1/process_payment",
-    "libraries/node/v1/save_card",
-    "libraries/node/v1/pre_authorization",
-    "libraries/node/v1/google_apple_pay",
-    "libraries/node/v1/cancel_payment",
-    "libraries/node/v1/appearances",
+    "libraries/node/v1.0.0/index",
+    "libraries/node/v1.0.0/available_methods",
+    "libraries/node/v1.0.0/create_payment",
+    "libraries/node/v1.0.0/process_payment",
+    "libraries/node/v1.0.0/save_card",
+    "libraries/node/v1.0.0/pre_authorization",
+    "libraries/node/v1.0.0/google_apple_pay",
+    "libraries/node/v1.0.0/cancel_payment",
+    "libraries/node/v1.0.0/appearances",
   ],
+  pythonSidebar: ["libraries/python/v1.0.0/index"],
+  pphpSidebar: ["libraries/php/v1.0.0/index"],
   apisidebar: require("./docs/api/sidebar.ts").default,
 };
 

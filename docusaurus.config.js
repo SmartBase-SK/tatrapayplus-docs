@@ -102,7 +102,7 @@ const config = {
         items: [
           {
             type: "localeDropdown",
-            position: "left",
+            position: "right",
           },
           {
             href: "/docs/libraries/node/v1/",
@@ -111,11 +111,6 @@ const config = {
           {
             href: "/docs/api/tatrapayplus-api/",
             label: "API Reference",
-          },
-          {
-            href: "https://github.com/SmartBase-SK/tatrapayplus-node",
-            label: "GitHub",
-            position: "right",
           },
         ],
       },
@@ -165,6 +160,8 @@ const config = {
           highlight: "javascript",
           language: "javascript",
           logoClass: "javascript",
+          variant: "SDK",
+          variants: ["SDK"],
         },
         {
           highlight: "python",

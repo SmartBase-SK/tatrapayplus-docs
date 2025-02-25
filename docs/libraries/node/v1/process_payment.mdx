@@ -1,3 +1,5 @@
+import CodeBlock from '@theme/CodeBlock';
+
 # Process payment
 
 After completing the operations in the TatraPayPlus service, the user will be redirected to the **Redirect URL** provided during payment initialization.
@@ -34,10 +36,10 @@ https://theredirecturl.com/redirect?paymentId=e43f85a2-b21f-4ec2-b0a1-0e449d6972
 ## Retrieve payment status
 
 Based on received GET params you should retrieve status of payment as following:
-```javascript
-const paymentId = req.query.paymentId; // based on your server
-const {simpleStatus, data, error} = await sdk.getPaymentStatus(paymentId);
-```
+
+import getPaymentStatus from '!!raw-loader!../../../../code_samples/node/v1/getPaymentStatus';
+
+<CodeBlock language="jsx">{getPaymentStatus}</CodeBlock>
 
 Result includes a `simpleStatus` attribute that can have one of three values: `ACCEPTED`, `PENDING`, or `REJECTED`.
 Your implementation should take the appropriate action based on the value of `simpleStatus`.

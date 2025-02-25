@@ -1,4 +1,3 @@
-// highlight-start
 const { response } = await sdk.setAppearances({
   surfaceAccent: {
     colorDarkMode: "#ff0000", //🟥
@@ -13,7 +12,6 @@ const { response } = await sdk.setAppearances({
     colorLightMode: "#0000ff",
   },
 });
-// highlight-end
 if (response.status === 201) {
   console.log("Logo was successfully saved.");
 }

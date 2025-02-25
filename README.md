@@ -24,18 +24,9 @@ $ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-### Deployment
+### Translations
 
-Using SSH:
+Copy new files to translate:
+`rsync -av --ignore-existing --exclude='api' docs/ i18n/sk/docusaurus-plugin-content-docs/current`
 
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+If you change something in original, you need to manually add it to translations.

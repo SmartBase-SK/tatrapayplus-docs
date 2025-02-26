@@ -20,6 +20,7 @@
 [data-theme='dark'] {
   --ifm-color-primary: #fff;
   --ifm-link-color: #7b7be5;
+  --docsearch-highlight-color: #7b7be5 !important;
 }
 
 .tabs-container.openapi-tabs__code-container.openapi-tabs__code-container-inner:nth-child(2) {

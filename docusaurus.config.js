@@ -11,7 +11,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   // noIndex: true,
-  title: "Tatrapay+ payment gateway",
+  title: "tatrapay+ payment gateway",
   tagline: "Create the future of banking with us.",
   favicon: "img/favicon.ico",
 
@@ -94,9 +94,9 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "Tatrapay+",
+        title: "tatrapay+",
         logo: {
-          alt: "Tatrapay+ Logo",
+          alt: "tatrapay+ Logo",
           src: "img/logo-tatra-banka.png",
           srcDark: "img/logo-tatra-banka-dark.png",
         },

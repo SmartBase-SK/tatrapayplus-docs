@@ -1,4 +1,5 @@
 const { response } = await sdk.setAppearances({
+  theme: "SYSTEM",
   surfaceAccent: {
     colorDarkMode: "#ff0000", //🟥
     colorLightMode: "#ff0000",

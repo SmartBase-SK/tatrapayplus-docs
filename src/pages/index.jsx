@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Explore guides, code samples, and API reference documentation for Tatrapay+ payment gateway.">
+      description="Explore guides, code samples, and API reference documentation for tatrapay+ payment gateway.">
       <HomepageHeader />
         <h2 className={"platforms__title"}>Choose your platform</h2>
       <div className="platforms">

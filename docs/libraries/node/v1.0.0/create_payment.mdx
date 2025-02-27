@@ -29,13 +29,13 @@ basePayment: {
 :::warning
 
 Most common issue is that value in `instructedAmount.amountValue` field is not rounded properly and API will reject such a data.
-Please round your data to **2 decimals places** or 0 decimals places in case of 'HUF', 'JPY', 'TWD' currencies.
+Please round your data to **2 decimals places**.
 
 :::
 
 ### Modify language and preferred method
 
-By default, Tatrapay+ gateway will show all available payment methods and payment gateway is shown in default **Slovak** language.
+By default, tatrapay+ gateway will show all available payment methods and payment gateway is shown in default **Slovak** language.
 If you want to change this behaviour you can pass `language` and `preferredMethod` param to `createPayment`.
 
 If `preferredMethod` is available user will be directly navigated to this method.
@@ -183,6 +183,6 @@ After you create reqeust to initiate payment you receive following data:
 You should save `paymentId` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/node/v1.0.0/process_payment).
 Then you have two options of displaying payment gateway:
 1. Simply redirect user to gateway, field `tatraPayPlusUrl`.
-2. Show payment gateway in iframe.
+2. Show payment gateway in iframe. For detailed description how to use iframe please visit [Developer portal documentation](https://developer.tatrabanka.sk/apihub/#/apis/f438e906-7845-4bc1-a028-73d3f9547d2a/show/doc?mode=view&uri=iFrame-podpora)
 
 <Button label="See full API reference" link="/docs/api/initiate-payment"/>

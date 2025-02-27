@@ -77,7 +77,7 @@ const config = {
         docsPluginId: "classic",
         config: {
           api: {
-            specPath: "./tatrapayplus_api_sandbox.json",
+            specPath: "./tatrapayplus_api_sandbox_final.json",
             outputDir: "docs/api",
             sidebarOptions: {
               groupPathsBy: "tag",

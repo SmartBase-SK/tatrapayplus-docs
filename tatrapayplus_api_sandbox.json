@@ -79,16 +79,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/createPayment.js"
-            }
-          }
-        ]
+        }
       }
     },
     "/v1/payments/methods": {
@@ -145,16 +136,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/getAvailablePaymentMethods.js"
-            }
-          }
-        ]
+        }
       }
     },
     "/v1/payments/{payment-id}/status": {
@@ -214,16 +196,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/getPaymentStatus.js"
-            }
-          }
-        ]
+        }
       }
     },
     "/v1/payments/{payment-id}": {
@@ -289,16 +262,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/updatePayment.js"
-            }
-          }
-        ]
+        }
       },
       "delete": {
         "summary": "Cancel payment intent.",
@@ -355,16 +319,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/cancelPayment.js"
-            }
-          }
-        ]
+        }
       }
     },
     "/v1/payments-direct": {
@@ -429,16 +384,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/createPaymentDirect.js"
-            }
-          }
-        ]
+        }
       }
     },
     "/v1/appearances": {
@@ -497,16 +443,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/setColors.js"
-            }
-          }
-        ]
+        }
       }
     },
     "/v1/appearances/logo": {
@@ -565,16 +502,7 @@
           "503": {
             "$ref": "#/components/responses/SERVICE_UNAVAILABLE_503"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/setLogo.js"
-            }
-          }
-        ]
+        }
       }
     },
     "/auth/oauth/v2/token": {
@@ -595,16 +523,7 @@
           "400": {
             "$ref": "#/components/responses/UNAUTHORIZED_401_AuthTokenError"
           }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "JavaScript",
-            "label": "SDK",
-            "source": {
-              "$ref": "./code_samples/node/v1.0.0/getAccessToken.js"
-            }
-          }
-        ]
+        }
       }
     }
   },
@@ -1034,9 +953,10 @@
         "type": "string"
       },
       "cardPayStatus": {
-        "description": "\n**CardPay status**\n\n| Enum      | description |\n| ---------------- | ------------|\n| OK              | processed successfully transaction     |\n| FAIL              | failed transaction |\n| PA              | pre-authorization |\n| CPA              | completed pre-authorization |\n| SPA               | canceled preauthorization |\n| XPA               | expired pre-authorization |\n| CB               | returned payment |\n| AUTH_REQUIRED               | 3D secure authorization required |\n| AUTH_EXPIRED               | authorization expired |\n| AUTH_CANCELED               | authorization canceled |\n",
+        "description": "\n**CardPay status**\n\n| Enum      | description |\n| ---------------- | ------------|\n| INIT              | initialized transaction     |\n| OK              | processed successfully transaction     |\n| FAIL              | failed transaction |\n| PA              | pre-authorization |\n| CPA              | completed pre-authorization |\n| SPA               | canceled preauthorization |\n| XPA               | expired pre-authorization |\n| CB               | returned payment |\n| AUTH_REQUIRED               | 3D secure authorization required |\n| AUTH_EXPIRED               | authorization expired |\n| AUTH_CANCELED               | authorization canceled |\n",
         "type": "string",
         "enum": [
+          "INIT",
           "OK",
           "FAIL",
           "PA",
@@ -1047,7 +967,8 @@
           "AUTH_REQUIRED",
           "AUTH_EXPIRED",
           "AUTH_CANCELED"
-        ]
+        ],
+        "example": "OK"
       },
       "cardPayStatusStructure": {
         "description": "card pay status structure",
@@ -1645,11 +1566,11 @@
           },
           "name": {
             "type": "string",
-            "pattern": "^[ 0-9a-zA-Z.@_-]{1,25}$"
+            "pattern": "^[ 0-9a-zA-Z\\.:\\/\\*-]{1,25}$"
           },
           "location": {
             "type": "string",
-            "pattern": "^[ 0-9a-zA-Z.@_-]{1,13}$"
+            "pattern": "^[ 0-9a-zA-Z-]{1,13}$"
           },
           "country": {
             "$ref": "#/components/schemas/countryCode"
@@ -2017,8 +1938,13 @@
         "schema": {
           "type": "string",
           "enum": [
+            "sk",
             "en",
-            "sk"
+            "de",
+            "hu",
+            "cz",
+            "es",
+            "pl"
           ],
           "default": "sk"
         }

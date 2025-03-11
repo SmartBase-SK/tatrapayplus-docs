@@ -19,6 +19,7 @@ const sidebars = {
     "libraries/node/v1.0.0/available_methods",
     "libraries/node/v1.0.0/create_payment",
     "libraries/node/v1.0.0/process_payment",
+    "libraries/node/v1.0.0/chargeback",
     "libraries/node/v1.0.0/save_card",
     "libraries/node/v1.0.0/pre_authorization",
     "libraries/node/v1.0.0/google_apple_pay",

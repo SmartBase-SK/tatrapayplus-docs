@@ -16,6 +16,10 @@ payment_data = InitiatePaymentRequest(
         ),
         end_to_end="ORDER123456",
     ),
+    card_detail=CardDetail(
+                is_pre_authorization=True,
+                card_holder="Janko Hruska",
+            ),
     bank_transfer=BankTransfer(),
 )
 

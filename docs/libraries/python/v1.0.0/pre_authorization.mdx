@@ -7,7 +7,7 @@ If you want to use pre-authorization for card payments you can pass `is_pre_auth
 
 import createPaymentPreAuthorization from '!!raw-loader!@site/code_samples/python/v1.0.0/create_payment_pre_authorization.py';
 
-<CodeBlock language="jsx">{createPaymentPreAuthorization}</CodeBlock>
+<CodeBlock language="python">{createPaymentPreAuthorization}</CodeBlock>
 
 In case of payment by pre-authorisation, the merchant is obliged to ensure the termination/cancellation of the pre-authorisation by **calling the online interface within 7 days** from the date on which the pre-authorisation was made.
 If the merchant performs a pre-authorisation transaction for the purpose of [registering the card for ComfortPay](/docs/libraries/python/v1.0.0/save_card), the transaction will not be cleared and will be released to the cardholder by the cardholder's bank within a few days.
@@ -17,7 +17,7 @@ There is a risk that the customer's bank will not retain this information as par
 
 import confirmCancelPreAuthorization from '!!raw-loader!@site/code_samples/python/v1.0.0/confirm_cancel_pre_authorization.py';
 
-<CodeBlock language="jsx">{confirmCancelPreAuthorization}</CodeBlock>
+<CodeBlock language="python">{confirmCancelPreAuthorization}</CodeBlock>
 
 
 

@@ -1,3 +1,4 @@
+
 # Getting started
 
 To be able to use and test payment gateway you need to have **Client ID** and **Client secret** from [TB developer portal](https://developer.tatrabanka.sk/).
@@ -6,4 +7,16 @@ To be able to use and test payment gateway you need to have **Client ID** and **
 
 🚧 WIP 🚧
 
+# Client Initialization
 
+To start working with the API, you need to initialize the `TatrapayPlusClient` with the following parameters:
+
+```python
+from tatrapayplus import TatrapayPlusClient
+
+client = TatrapayPlusClient(
+    "https://api.tatrabanka.sk/tatrapayplus/sandbox",  # API base URL
+    "your-client-id",                                  # Client ID
+    "your-client-secret",                              # Client secret
+    "https://your-website.com/return-url",             # Return URL
+)

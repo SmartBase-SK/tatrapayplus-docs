@@ -26,7 +26,12 @@ const sidebars = {
     "libraries/node/v1.0.0/cancel_payment",
     "libraries/node/v1.0.0/appearances",
   ],
-  pythonSidebar: ["libraries/python/v1.0.0/index"],
+  pythonSidebar: [
+      "libraries/python/v1.0.0/index",
+      "libraries/python/v1.0.0/available_methods",
+      "libraries/python/v1.0.0/create_payment",
+      "libraries/python/v1.0.0/process_payment",
+  ],
   pphpSidebar: ["libraries/php/v1.0.0/index"],
   apisidebar: require("./docs/api/sidebar.ts").default,
 };

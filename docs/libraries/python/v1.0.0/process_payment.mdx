@@ -39,7 +39,7 @@ Based on received GET params you should retrieve status of payment as following:
 
 import getPaymentStatus from '!!raw-loader!@site/code_samples/python/v1.0.0/get_payment_status.py';
 
-<CodeBlock language="jsx">{getPaymentStatus}</CodeBlock>
+<CodeBlock language="python">{getPaymentStatus}</CodeBlock>
 
 Result includes a `simple_status` attribute that can have one of three values: `ACCEPTED`, `PENDING`, or `REJECTED`.
 Your implementation should take the appropriate action based on the value of `simple_status`.

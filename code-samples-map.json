@@ -9,6 +9,13 @@
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/createPayment.js"
                   }
+               },
+               {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/create_payment.py"
+                  }
                }
             ]
          }
@@ -21,6 +28,13 @@
                   "label":"SDK",
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/getAvailablePaymentMethods.js"
+                  }
+               },
+                {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/get_available_payment_methods.py"
                   }
                }
             ]
@@ -35,6 +49,13 @@
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/getPaymentStatus.js"
                   }
+               },
+               {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/get_payment_status.py"
+                  }
                }
             ]
          }
@@ -48,6 +69,13 @@
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/updatePayment.js"
                   }
+               },
+              {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/update_payment.py"
+                  }
                }
             ]
          },
@@ -58,6 +86,13 @@
                   "label":"SDK",
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/cancelPayment.js"
+                  }
+               },
+                   {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/cancel_payment.py"
                   }
                }
             ]
@@ -72,6 +107,13 @@
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/createPaymentDirect.js"
                   }
+               },
+               {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/create_payment_direct.py"
+                  }
                }
             ]
          }
@@ -84,6 +126,13 @@
                   "label":"SDK",
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/setColors.js"
+                  }
+               },
+              {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/set_colors.py"
                   }
                }
             ]
@@ -98,6 +147,13 @@
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/setLogo.js"
                   }
+               },
+               {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/set_logo.py"
+                  }
                }
             ]
          }
@@ -110,6 +166,13 @@
                   "label":"SDK",
                   "source":{
                      "$ref":"./code_samples/node/v1.0.0/getAccessToken.js"
+                  }
+               },
+               {
+                  "lang":"Python",
+                  "label":"SDK",
+                  "source":{
+                     "$ref":"./code_samples/python/v1.0.0/get_access_token.py"
                   }
                }
             ]

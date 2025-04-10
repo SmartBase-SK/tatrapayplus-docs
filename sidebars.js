@@ -35,6 +35,7 @@ const sidebars = {
       "libraries/python/v1.0.0/save_card",
       "libraries/python/v1.0.0/pre_authorization",
       "libraries/python/v1.0.0/google_apple_pay",
+      "libraries/python/v1.0.0/cancel_payment",
   ],
   pphpSidebar: ["libraries/php/v1.0.0/index"],
   apisidebar: require("./docs/api/sidebar.ts").default,

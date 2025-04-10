@@ -1,0 +1,125 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Logging
+
+# TatrapayPlusLogger
+
+The `TatrapayPlusLogger` is a simple and customizable HTTP logger for the `TatrapayPlusClient`.
+It helps you debug API calls by logging outgoing requests and incoming responses, while safely masking sensitive data.
+
+---
+
+## Features
+
+- Logs **request and response** metadata
+- Built-in **field masking**
+- Extendable via `write_line()`
+
+## Masked Fields
+
+The logger masks sensitive values before outputting them:
+
+- **Headers**: `Authorization`
+- **Body fields (reqest and response)**: `client_id`, `client_secret`, `access_token`
+
+Example masked output: `client_secret=abcde*************uvxyz`
+
+You can disable masking by setting `mask_sensitive_data=False` parameter during logger initialization.
+
+
+## Usage Example
+
+### Step 1: Create a Logger Subclass
+
+
+```python
+from tatrapayplus.helpers import TatrapayPlusLogger
+
+class ConsoleLogger(TatrapayPlusLogger):
+    def write_line(self, line):
+        print(line)
+
+# Extended version for logging to file
+class FileLogger(TatrapayPlusLogger):
+    def __init__(self, file_path, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.file_path = file_path
+
+    def write_line(self, line):
+        with open(self.file_path, "a", encoding="utf-8") as f:
+            f.write(str(line) + "\n")
+```
+
+### Step 2: Inject the Logger into the Client
+
+```python
+from tatrapayplus.client import TatrapayPlusClient
+
+logger = ConsoleLogger()
+
+client = TatrapayPlusClient(
+    base_url="https://api.tatrabanka.sk/tatrapayplus/sandbox",
+    client_id="your-client-id",
+    client_secret="your-client-secret",
+    redirect_uri="https://yourapp.com/redirect",
+    logger=logger,
+)
+
+```
+
+## Customization
+You can customize the masking fields:
+```python
+logger.mask_body_fields = ["client_id", "client_secret", "access_token"]
+logger.mask_header_fields = ["Authorization"]
+logger.mask_sensitive_data = True  # or False to disable masking
+```
+
+## Example output
+```
+INFO [2025-04-10 13:11:51] [INFO] Request:
+Method: POST
+URL: https://api.tatrabanka.sk/tatrapayplus/sandbox/v1/payments
+Headers:
+{'Authorization': 'Beare*********************************70d69', 'Content-Type': 'application/json', 'X-Request-ID': 'df7f30e8-6cde-4c76-b377-a2e83fd937dd', 'IP-Address': '127.0.1.1', 'Redirect-URI': 'https://tatrabanka.sk/', 'Accept-Language': 'sk', 'Content-Length': '125'}
+Body:
+{
+  "basePayment": {
+    "instructedAmount": {
+      "amountValue": 120,
+      "currency": "EUR"
+    },
+    "endToEnd": "ORDER123456"
+  },
+  "bankTransfer": {}
+}
+
+INFO [2025-04-10 13:11:51] [INFO] Response success(status: 201):
+{
+  "paymentId": "baf651a5-1582-4b92-9a59-dacd61f65a51",
+  "tatraPayPlusUrl": "https://api.tatrabanka.sk/tatrapayplus/sandbox/v1/auth?paymentId=baf651a5-1582-4b92-9a59-dacd61f65a51&client_id=l7ba7ffa0bf66b49b88d17dfe144955f54&hmac=bf1796ce46ebc32617726f53db1981c920f6363bbcbec3a4044ef258db3479a2",
+  "availablePaymentMethods": [
+    {
+      "isAvailable": false,
+      "reasonCodeMethodAvailabilityDescription": "Mandatory structure: userData was not provided in the request body. See specs.",
+      "paymentMethod": "CARD_PAY",
+      "reasonCodeMethodAvailability": "MANDATORY_STRUCTURE_NOT_PROVIDED"
+    },
+    {
+      "isAvailable": false,
+      "reasonCodeMethodAvailabilityDescription": "Mandatory structure: userData was not provided in the request body. See specs.",
+      "paymentMethod": "PAY_LATER",
+      "reasonCodeMethodAvailability": "MANDATORY_STRUCTURE_NOT_PROVIDED"
+    },
+    {
+      "isAvailable": true,
+      "paymentMethod": "BANK_TRANSFER"
+    },
+    {
+      "isAvailable": true,
+      "paymentMethod": "QR_PAY"
+    }
+  ]
+}
+```

@@ -111,7 +111,7 @@ const config = {
                 href: "/docs/libraries/node/v1.0.0/",
               },
               {
-                label: "Python(WIP)",
+                label: "Python",
                 href: "/docs/libraries/python/v1.0.0/",
               },
               {

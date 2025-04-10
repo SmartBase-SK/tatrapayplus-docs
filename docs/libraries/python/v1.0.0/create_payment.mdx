@@ -1,0 +1,165 @@
+import Button from '@site/src/components/Button';
+import CodeBlock from '@theme/CodeBlock';
+import createPayment from '!!raw-loader!@site/code_samples/python/v1.0.0/create_payment.py';
+
+# Create Payment
+
+To create a payment using the Python SDK, call the `TatrapayPlusClient.create_payment()` method.
+
+<details>
+  <summary>Click to see example for all payment methods</summary>
+  <CodeBlock language="python">{createPayment}</CodeBlock>
+</details>
+
+## Common Data
+
+Tatrapay Plus supports multiple payment methods. Depending on the selected method, you can include additional optional fields. However, some data is **mandatory** for all payment types:
+
+```python
+base_payment=BasePayment(
+    end_to_end="VS0123456789/SS0123456789/KS123456",
+    instructed_amount=Amount(
+        amount_value=99.99,
+        currency="EUR"
+    )
+)
+```
+:::warning
+
+Most common issue is that value in `instructed_amount.amount_value` field is not rounded properly and API will reject such a data.
+Please round your data to **2 decimals places**.
+
+:::
+
+### Modify language and preferred method
+
+By default, tatrapay+ gateway will show all available payment methods and payment gateway is shown in default **Slovak** language.
+If you want to change this behaviour you can pass `language` and `preferred_method` param to `create_payment`.
+
+If `preferred_method` is available user will be directly navigated to this method.
+
+<details>
+    <summary>Show gateway in English with bank transfer method</summary>
+
+```python
+client.create_payment(
+    payment_data,
+    'en',
+    'BANK_TRANSFER'
+)
+```
+</details>
+
+### Redirect URI
+
+Redirect URI is used as return address after customer finish payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/python/v1.0.0/process_payment).
+
+If your application serves multiple locales with distinct URIs for example:
+- https://example.com for one locale
+- https://example.com/de/ for German users
+
+you must register both URIs in the developer portal.
+Then, when making a `create_payment` request, be sure to include the redirect URI that matches the user's locale.
+:::warning
+
+This URI must exactly match the URI defined in the [Developer Portal](https://developer.tatrabanka.sk/pages/devportal/sk/#/)
+
+:::
+
+## Specific payment method data
+
+### Bank transfer and QR pay
+
+For this payment method you need to define attribute `bank_transfer`. **It can be empty** or contains additional information.
+If you omit this attribute, bank transfer wouldn't be shown.
+
+```python
+bank_transfer \=BankTransfer(remittance_information_unstructured: "Additional informations")
+```
+### Card pay
+
+This payment methods requires `card_detail.card_holder`, `user_data.first_name` and `user_data.last_name`.
+One of `user_data.email` or `user_data.phone` is required, based on these data are send notifications to customers.
+
+:::tip
+
+The SDK automatically strips diacritical marks from characters in the `card_detail.card_holder` field, so **you don't need** to handle this conversion yourself.
+
+:::
+
+```python
+user_data=UserData(
+        first_name="Janko",
+        last_name="Hruska",
+        email="janko.hruska@example.com",
+        phone="+421911123456",
+    ),
+
+card_detail=CardDetail( card_holder="Janko Hruška")
+```
+### PayLater (Na splátky<sup>TB</sup>)
+
+This payment method requires information about items that were bought by customer.
+This structure is more complex and description of all fields can be found in [API reference](/docs/api/initiate-payment).
+
+:::warning
+
+The API will reject requests where `instructed_amount.amount_value` doesn't match the **sum of all total_item_price** values.
+
+:::
+
+```python
+pay_later=PayLater(
+            order=Order(
+                order_no="ORDER123456",
+                order_items=[
+                    OrderItem(
+                        quantity=1,
+                        total_item_price=10.0,
+                        item_detail=ItemDetail(
+                            item_detail_sk=ItemDetailLangUnit(
+                                item_name="Testovací produkt",
+                                item_description="Popis produktu",
+                            ),
+                            item_detail_en=ItemDetailLangUnit(
+                                item_name="Test Product",
+                                item_description="Product description",
+                            ),
+                        ),
+                        item_info_url="https://tatrabanka.sk",
+                    )
+                ],
+                preferred_loan_duration=12,
+                down_payment=1.0,
+            ),
+            capacity_info=CapacityInfo(
+                monthly_income=2000.0,
+                monthly_expenses=800.0,
+                number_of_children=1,
+            ),
+        )
+```
+
+## Response
+
+After you create reqeust to initiate payment you receive InitiatePaymentResponse with following data:
+```python
+InitiatePaymentResponse(
+    payment_id='d7ec77c6-39d8-4011-a462-1a0f1b23f65f',
+    tatra_pay_plus_url='https://api.tatrabanka.sk/tatrapayplus/sandbox/v1/auth?paymentId=d7ec77c6-39d8-4011-a462-1a0f1b23f65f&client_id=l7ba7ffa0bf66b49b88d17dfe144955f54&hmac=7043761cb4cff51d1d084f90cd25d370b89515a1c43c39e6ea459dd504059834',
+    available_payment_methods=[
+        AvailablePaymentMethod(
+            payment_method=PaymentMethod.BANK_TRANSFER,
+            is_available=True,
+            ),
+        AvailablePaymentMethod(
+            payment_method=PaymentMethod.CARD_PAY,
+            is_available=True,
+            ),
+       ]
+```
+You should save `payment_id` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/python/v1.0.0/process_payment).
+Then you have two options of displaying payment gateway:
+1. Simply redirect user to gateway, field `tatra_pay_plus_url`.
+2. Show payme
+<Button label="See full API reference" link="/docs/api/initiate-payment"/>

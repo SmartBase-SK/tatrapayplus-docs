@@ -14,18 +14,18 @@ To be able to save user credit card you need to do one payment and specify param
 
 ```python
 payment_data = InitiatePaymentRequest(
-        base_payment=BasePayment(
-            instructed_amount=Amount(
-                amount_value=10.0,
-                currency="EUR",
-            ),
-            end_to_end="ORDER123456",
+    base_payment=BasePayment(
+        instructed_amount=Amount(
+            amount_value=10.0,
+            currency="EUR",
         ),
-        card_detail=CardDetail(
-                    card_holder="Janko Hruška",
-                    comfort_pay=RegisterForComfortPayObj(register_for_comfort_pay=True)
-                )
-        ...
+        end_to_end="ORDER123456",
+    ),
+    card_detail=CardDetail(
+        card_holder="Janko Hruška",
+        comfort_pay=RegisterForComfortPayObj(register_for_comfort_pay=True)
+    )
+    ...
 )
 ```
 
@@ -50,11 +50,8 @@ response = client.get_payment_status(payment_id)
 After you saved `cid` token to customer. You should show customer saved cards in your website. When user select some of the saved card you need to pass `cid` to `generate_signed_card_id_from_cid` and result of this function can be passed to `comfort_pay.SignedCardIdObj()`.
 
 ```python
-
-cid = customer.cid # cid taken from stored customer
-
+cid = customer.cid  # cid taken from stored customer
 signed_cid = client.generate_signed_card_id_from_cid(cid)
-
 payment_data = InitiatePaymentRequest(
     base_payment=BasePayment(
         instructed_amount=Amount(
@@ -75,7 +72,6 @@ payment_data = InitiatePaymentRequest(
     )
     ...
 )
-
 ```
 
 

@@ -109,35 +109,35 @@ The API will reject requests where `instructed_amount.amount_value` doesn't matc
 :::
 
 ```python
-pay_later=PayLater(
-            order=Order(
-                order_no="ORDER123456",
-                order_items=[
-                    OrderItem(
-                        quantity=1,
-                        total_item_price=10.0,
-                        item_detail=ItemDetail(
-                            item_detail_sk=ItemDetailLangUnit(
-                                item_name="Testovací produkt",
-                                item_description="Popis produktu",
-                            ),
-                            item_detail_en=ItemDetailLangUnit(
-                                item_name="Test Product",
-                                item_description="Product description",
-                            ),
-                        ),
-                        item_info_url="https://tatrabanka.sk",
-                    )
-                ],
-                preferred_loan_duration=12,
-                down_payment=1.0,
-            ),
-            capacity_info=CapacityInfo(
-                monthly_income=2000.0,
-                monthly_expenses=800.0,
-                number_of_children=1,
-            ),
-        )
+pay_later = PayLater(
+    order=Order(
+        order_no="ORDER123456",
+        order_items=[
+            OrderItem(
+                quantity=1,
+                total_item_price=10.0,
+                item_detail=ItemDetail(
+                    item_detail_sk=ItemDetailLangUnit(
+                        item_name="Testovací produkt",
+                        item_description="Popis produktu",
+                    ),
+                    item_detail_en=ItemDetailLangUnit(
+                        item_name="Test Product",
+                        item_description="Product description",
+                    ),
+                ),
+                item_info_url="https://tatrabanka.sk",
+            )
+        ],
+        preferred_loan_duration=12,
+        down_payment=1.0,
+    ),
+    capacity_info=CapacityInfo(
+        monthly_income=2000.0,
+        monthly_expenses=800.0,
+        number_of_children=1,
+    ),
+)
 ```
 
 ## Response
@@ -151,12 +151,13 @@ InitiatePaymentResponse(
         AvailablePaymentMethod(
             payment_method=PaymentMethod.BANK_TRANSFER,
             is_available=True,
-            ),
+        ),
         AvailablePaymentMethod(
             payment_method=PaymentMethod.CARD_PAY,
             is_available=True,
-            ),
-       ]
+        ),
+    ]
+)
 ```
 You should save `payment_id` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/python/v1.0.0/process_payment).
 Then you have two options of displaying payment gateway:

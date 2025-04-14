@@ -4,8 +4,7 @@ from tatrapayplus.models import *
 client = TatrapayPlusClient(
     "https://api.tatrabanka.sk/tatrapayplus/sandbox",
     "your-client-id",
-    "your-client-secret",
-    "https://your-return-url.com",
+    "your-client-secret"
 )
 
 logo_data = AppearanceLogoRequest(

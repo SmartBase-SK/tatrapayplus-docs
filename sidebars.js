@@ -38,6 +38,7 @@ const sidebars = {
       "libraries/python/v1.0.0/cancel_payment",
       "libraries/python/v1.0.0/appearances",
       "libraries/python/v1.0.0/logging",
+      "libraries/python/v1.0.0/errors_handling",
   ],
   pphpSidebar: ["libraries/php/v1.0.0/index"],
   apisidebar: require("./docs/api/sidebar.ts").default,

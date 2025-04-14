@@ -1,0 +1,32 @@
+
+# Handling errors
+
+When using the `TatrapayPlusClient`, all API requests are wrapped with internal error handling logic. If the API returns an error, a custom exception **`TatrapayPlusApiException`** is raised. This allows you to catch and respond to failures in a structured way.
+
+## Basic usage
+
+Wrap all client calls in a `try/except` block to catch and handle `TatrapayPlusApiException`.
+
+```python
+from tatrapayplus.errors import TatrapayPlusApiException
+
+try:
+    payment_response = client.create_payment(
+        request=payment_data,
+        redirect_uri="https://tatrabanka.sk/",
+    )
+except TatrapayPlusApiException as e:
+    print("Payment failed:", e)
+    # Handle error
+```
+## Error body types
+
+When a `TatrapayPlusApiException` is raised, the `error_body` attribute will contain **one of three** structured model instances, depending on which endpoint was called and what kind of error occurred.
+
+### Supported models
+
+| Model                      | Description                                     | When it's used                    |
+|---------------------------|-------------------------------------------------|-----------------------------------|
+| `GetAccessTokenResponse400` | Returned from the auth endpoint when authentication fails. | Invalid client credentials        |
+| `Field400ErrorBody`         | Returned when a `400 Bad Request` is caused by invalid input or unsupported operation. | Validation/business rule errors   |
+| `Field40XErrorBody`         | Returned for other 40X errors like `403`, `404`, etc.           | Authorization or access issues    |

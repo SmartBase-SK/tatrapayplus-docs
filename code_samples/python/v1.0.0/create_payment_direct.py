@@ -50,4 +50,4 @@ payment_data = InitiateDirectTransactionRequest(
     ),
 )
 
-client.create_payment_direct(payment_data)
+client.create_payment_direct(payment_data, "https://your-redirect-uri.com")

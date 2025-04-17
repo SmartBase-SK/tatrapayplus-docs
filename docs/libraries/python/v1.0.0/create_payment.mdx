@@ -44,6 +44,8 @@ If `preferred_method` is available user will be directly navigated to this metho
 ```python
 client.create_payment(
     payment_data,
+    redirect_uri,
+    ip_address,
     'en',
     'BANK_TRANSFER'
 )

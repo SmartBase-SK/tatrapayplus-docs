@@ -1,4 +1,3 @@
-from tatrapayplus import TatrapayPlusClient
 from tatrapayplus.models import *
 
 payment_data = InitiateDirectTransactionRequest(
@@ -50,4 +49,4 @@ payment_data = InitiateDirectTransactionRequest(
     ),
 )
 
-client.create_payment_direct(payment_data, "https://your-redirect-uri.com")
+client.create_payment_direct(payment_data, "https://your-redirect-uri.com", "127.0.0.1")

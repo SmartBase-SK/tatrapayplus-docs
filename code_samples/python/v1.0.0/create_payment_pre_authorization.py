@@ -22,4 +22,4 @@ payment_data = InitiatePaymentRequest(
     bank_transfer=BankTransfer(),
 )
 
-response = client.create_payment(payment_data, "https://your-redirect-uri.com")
+response = client.create_payment(payment_data, "https://your-redirect-uri.com", "127.0.0.1")

@@ -14,6 +14,7 @@ try:
     payment_response = client.create_payment(
         request=payment_data,
         redirect_uri="https://tatrabanka.sk/",
+        ip_address="127.0.0.1"
     )
 except TatrapayPlusApiException as e:
     print("Payment failed:", e)

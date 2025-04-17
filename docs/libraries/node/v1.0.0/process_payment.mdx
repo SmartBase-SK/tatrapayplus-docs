@@ -41,7 +41,7 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/node/v1.0.0/getPay
 
 <CodeBlock language="jsx">{getPaymentStatus}</CodeBlock>
 
-Result includes a `simpleStatus` attribute that can have one of three values: `ACCEPTED`, `PENDING`, or `REJECTED`.
+Result includes a `simpleStatus` attribute that can have one of three values: `AUTHORIZED`,`CAPTURE`,`PENDING` or `REJECTED`.
 Your implementation should take the appropriate action based on the value of `simpleStatus`.
 
 `data` attribute contains all the information based on structure described in [API reference](/docs/api/get-payment-intent-status).

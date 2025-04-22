@@ -1,9 +1,8 @@
 from tatrapayplus import TatrapayPlusClient, PaymentMethod
 
 client = TatrapayPlusClient(
-    "https://api.tatrabanka.sk/tatrapayplus/sandbox",
     "your-client-id",
-    "your-client-secret"
+    "your-client-secret",
 )
 
 # Get all available payment methods for this transaction

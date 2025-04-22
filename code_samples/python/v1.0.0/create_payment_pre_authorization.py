@@ -2,9 +2,8 @@ from tatrapayplus import TatrapayPlusClient
 from tatrapayplus.models import *
 
 client = TatrapayPlusClient(
-    "https://api.tatrabanka.sk/tatrapayplus/sandbox",
     "your-client-id",
-    "your-client-secret"
+    "your-client-secret",
 )
 
 payment_data = InitiatePaymentRequest(

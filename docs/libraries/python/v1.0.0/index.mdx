@@ -13,9 +13,15 @@ To start working with the API, you need to initialize the `TatrapayPlusClient` w
 
 ```python
 from tatrapayplus import TatrapayPlusClient
+from tatrapayplus.enums import Mode
 
 client = TatrapayPlusClient(
-    "https://api.tatrabanka.sk/tatrapayplus/sandbox",  # API base URL
     "your-client-id",                                  # Client ID
     "your-client-secret",                              # Client secret
+    mode=Mode.SANDBOX,                                 # Mode you are working with: SANDBOX or PRODUCTION
 )
+```
+
+There are 2 supported modes:
+- `SANDBOX (default)`: requests will be sent to SANDBOX (test) environment of gateway
+- `PRODUCTION`: requests will be sent to PRODUCTION (live) environment of gateway

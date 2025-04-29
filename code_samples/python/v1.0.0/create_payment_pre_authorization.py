@@ -2,9 +2,8 @@ from tatrapayplus import TatrapayPlusClient
 from tatrapayplus.models import *
 
 client = TatrapayPlusClient(
-    "https://api.tatrabanka.sk/tatrapayplus/sandbox",
     "your-client-id",
-    "your-client-secret"
+    "your-client-secret",
 )
 
 payment_data = InitiatePaymentRequest(
@@ -22,4 +21,4 @@ payment_data = InitiatePaymentRequest(
     bank_transfer=BankTransfer(),
 )
 
-response = client.create_payment(payment_data, "https://your-redirect-uri.com")
+response = client.create_payment(payment_data, "https://your-redirect-uri.com", "127.0.0.1")

@@ -25,6 +25,7 @@ const sidebars = {
     "libraries/node/v1.0.0/google_apple_pay",
     "libraries/node/v1.0.0/cancel_payment",
     "libraries/node/v1.0.0/appearances",
+    "libraries/node/v1.0.0/logging",
   ],
   pythonSidebar: [
       "libraries/python/v1.0.0/index",

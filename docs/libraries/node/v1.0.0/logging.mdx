@@ -1,0 +1,108 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Logging
+
+# TBPlusLogger
+
+The `TBPlusLogger` is a simple and customizable HTTP logger for the `TBPlusSDK`.
+It helps you debug API calls by logging outgoing requests and incoming responses, while safely masking sensitive data.
+
+---
+
+## Features
+
+- Logs **request and response** metadata
+- Built-in **field masking**
+- Extendable via `writeLine()` to customize output (console, file, etc.)
+
+## Masked Fields
+
+The logger masks sensitive values before outputting them:
+
+- **Headers**: `Authorization`
+- **Body fields (reqest and response)**: `client_id`, `client_secret`, `access_token`
+
+Example masked output: `client_secret=abcde*************uvxyz`
+
+You can disable masking by passing false to the constructor:
+```javascript
+const logger = new TBPlusLogger(false);
+```
+
+## Usage Example
+
+### Step 1: Create a Logger Subclass
+
+
+```javascript
+import { TBPlusLogger } from "./logger";
+
+class ConsoleLogger extends TBPlusLogger {
+  protected writeLine(line: string): void {
+    console.log("[ConsoleLogger]", line);
+  }
+}
+}
+
+```
+
+### Step 2: Use Logger with the SDK
+
+```javascript
+import { TBPlusSDK } from "tbplus-sdk";
+
+const logger = new ConsoleLogger();
+
+const sdk = new TBPlusSDK(
+  API_KEY,
+  API_SECRET,
+  "192.0.2.123",
+  {},
+  logger
+);
+```
+
+## Customization
+You can configure which fields are masked:
+
+```javascript
+logger.maskSensitiveData = true;
+logger.maskBodyFields = ["client_id", "client_secret", "access_token"];
+logger.maskHeaderFields = ["authorization"];
+```
+
+## Example output
+```
+[ConsoleLogger] Request: POST https://api.tatrabanka.sk/tatrapayplus/sandbox/v1/payments
+[ConsoleLogger] Headers:
+{
+  "authorization": "Beare*********************************70d69",
+  "content-type": "application/json",
+  "x-request-id": "df7f30e8-6cde-4c76-b377-a2e83fd937dd"
+}
+[ConsoleLogger] Body:
+{
+  "basePayment": {
+    "instructedAmount": {
+      "amountValue": 120,
+      "currency": "EUR"
+    },
+    "endToEnd": "ORDER123456"
+  },
+  "bankTransfer": {}
+}
+[ConsoleLogger] Response Status: 201
+[ConsoleLogger] Response:
+{
+  "paymentId": "baf651a5-1582-4b92-9a59-dacd61f65a51",
+  "tatraPayPlusUrl": "https://api.tatrabanka.sk/...&client_id=l7ba7f*****4955f54&hmac=bf17*****3479a2",
+  "availablePaymentMethods": [
+    {
+      "paymentMethod": "BANK_TRANSFER",
+      "isAvailable": true
+    },
+    ...
+  ]
+}
+```

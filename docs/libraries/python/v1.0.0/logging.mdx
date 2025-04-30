@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 # TatrapayPlusLogger
 
-The `TatrapayPlusLogger` is a simple and customizable HTTP logger for the `TatrapayPlusClient`.
+The `TatrapayPlusLogger` is a simple and customizable HTTP logger for the `TBPlusSDK`.
 It helps you debug API calls by logging outgoing requests and incoming responses, while safely masking sensitive data.
 
 ---
@@ -54,11 +54,11 @@ class FileLogger(TatrapayPlusLogger):
 ### Step 2: Inject the Logger into the Client
 
 ```python
-from tatrapayplus.client import TatrapayPlusClient
+from tatrapayplus.client import TBPlusSDK
 
 logger = ConsoleLogger()
 
-client = TatrapayPlusClient(
+client = TBPlusSDK(
     client_id="your-client-id",
     client_secret="your-client-secret",
     redirect_uri="https://yourapp.com/redirect",

@@ -41,7 +41,20 @@ const sidebars = {
       "libraries/python/v1.0.0/logging",
       "libraries/python/v1.0.0/errors_handling",
   ],
-  pphpSidebar: ["libraries/php/v1.0.0/index"],
+  phpSidebar: [
+    "libraries/php/v1.0.0/index",
+    "libraries/php/v1.0.0/available_methods",
+    "libraries/php/v1.0.0/create_payment",
+    "libraries/php/v1.0.0/process_payment",
+    "libraries/php/v1.0.0/chargeback",
+    "libraries/php/v1.0.0/save_card",
+    "libraries/php/v1.0.0/pre_authorization",
+    "libraries/php/v1.0.0/google_apple_pay",
+    "libraries/php/v1.0.0/cancel_payment",
+    "libraries/php/v1.0.0/appearances",
+    "libraries/php/v1.0.0/logging",
+    "libraries/php/v1.0.0/errors_handling",
+  ],
   apisidebar: require("./docs/api/sidebar.ts").default,
 };
 

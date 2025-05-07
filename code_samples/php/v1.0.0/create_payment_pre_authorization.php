@@ -27,3 +27,4 @@ $response = $tatrapayplus_api->initiatePayment(
     "redirect uri",
     $initiate_payment_request,
 );
+$response["object"]->getPaymentId();

@@ -13,3 +13,4 @@ $chargeback_data = new CardPayUpdateInstruction([
 ]);
 
 $response = $tatrapayplus_api->updatePaymentIntent($payment_id, $chargeback_data);
+$response["response"]->getStatusCode(); // 200 or 201 = success

@@ -115,7 +115,7 @@ const config = {
                 href: "/docs/libraries/python/v1.0.0/",
               },
               {
-                label: "PHP(WIP)",
+                label: "PHP",
                 href: "/docs/libraries/php/v1.0.0/",
               },
             ],

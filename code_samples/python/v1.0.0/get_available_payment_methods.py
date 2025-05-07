@@ -1,6 +1,6 @@
-from tatrapayplus import TatrapayPlusClient, PaymentMethod
+from tatrapayplus import TBPlusSDK, PaymentMethod
 
-client = TatrapayPlusClient(
+client = TBPlusSDK(
     "your-client-id",
     "your-client-secret",
 )

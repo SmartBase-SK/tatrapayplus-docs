@@ -1,7 +1,7 @@
-from tatrapayplus import TatrapayPlusClient
+from tatrapayplus import TBPlusSDK
 from tatrapayplus.models import *
 
-client = TatrapayPlusClient(
+client = TBPlusSDK(
     "your-client-id",
     "your-client-secret",
 )

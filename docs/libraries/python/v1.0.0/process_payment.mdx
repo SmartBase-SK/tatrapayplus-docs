@@ -41,7 +41,15 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/python/v1.0.0/get_
 
 <CodeBlock language="python">{getPaymentStatus}</CodeBlock>
 
-Result includes a `simple_status` attribute that can have one of three values: `ACCEPTED`, `PENDING`, or `REJECTED`.
+Result includes a `simple_status` attribute that can have one of three values: `CAPTURE`, `AUTHORIZED`, or `REJECTED`.
+| Payment Method | CAPTURE                      | REJECTED   | AUTHORIZED |
+|----------------|-----------------------------------------|----------------------|----------------------|
+| QR_PAY         | ACSC, ACCC                              | CANC, RJCT           |                      |
+| BANK_TRANSFER  | ACSC, ACCC                              | CANC, RJCT           |                      |
+| PAY_LATER      | LOAN_APPLICATION_FINISHED, LOAN_DISBURSED | CANCELED, EXPIRED    |                      |
+| CARD_PAY       | OK, CB                                  | FAIL                 | PA                   |
+| DIRECT_API     | OK, CB                                  | FAIL                 |                      |
+
 Your implementation should take the appropriate action based on the value of `simple_status`.
 
 `data` attribute contains all the information based on structure described in [API reference](/docs/api/get-payment-intent-status).

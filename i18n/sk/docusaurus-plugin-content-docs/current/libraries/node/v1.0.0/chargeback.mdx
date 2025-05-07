@@ -1,13 +1,13 @@
 import CodeBlock from '@theme/CodeBlock';
 
-# Chargeback
+# Vrátenie platby
 
-The merchant can also make a full or partial return of the transaction through CardPay.
-Returns can only be made on successful payments, including completed pre-authorisations, as well as on payments on which a return has already been made, and the amount of the return must not exceed the original amount of the payment (in the case of a pre-authorisation, it is the amount with which the pre-authorisation was confirmed).
+Obchodník môže vykonať úplné alebo čiastočné vrátenie platby cez CardPay.
+Vrátenie platby je možné len pri úspešných platbách vrátane dokončených predautorizácií, ako aj pri platbách, pri ktorých už bolo vrátenie vykonané, pričom výška vrátenia nesmie presiahnuť pôvodnú sumu platby (v prípade predautorizácie ide o sumu, ktorou bola predautorizácia potvrdená).
 
 
 import chargeBack from '!!raw-loader!@site/code_samples/node/v1.0.0/chargeBack';
 
 <CodeBlock language="jsx">{chargeBack}</CodeBlock>
 
-<Button label="See full API reference" link="/docs/api/cancel-payment-intent"/>
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/cancel-payment-intent"/>

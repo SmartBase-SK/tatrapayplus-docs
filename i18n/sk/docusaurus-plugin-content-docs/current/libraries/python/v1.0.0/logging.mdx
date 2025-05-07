@@ -5,32 +5,32 @@ import TabItem from '@theme/TabItem';
 
 # TatrapayPlusLogger
 
-The `TatrapayPlusLogger` is a simple and customizable HTTP logger for the `TBPlusSDK`.
-It helps you debug API calls by logging outgoing requests and incoming responses, while safely masking sensitive data.
+`TatrapayPlusLogger` je jednoduchý a prispôsobiteľný HTTP logger pre `TBPlusSDK`.
+Pomáha vám ladiť volania API zaznamenávaním odchádzajúcich požiadaviek a prichádzajúcich odpovedí a zároveň bezpečne maskuje citlivé údaje.
 
 ---
 
-## Features
+## Funkcie
 
-- Logs **request and response** metadata
-- Built-in **field masking**
-- Extendable via `write_line()`
+- Zaznamenáva metadáta **žiadostí a odpovedí**
+- Vstavané **maskovanie polí**
+- Rozšíriteľné pomocou `write_line()`
 
-## Masked Fields
+## Maskované polia
 
-The logger masks sensitive values before outputting them:
+Logger maskuje citlivé hodnoty pred ich výstupom:
 
 - **Headers**: `Authorization`
 - **Body fields (reqest and response)**: `client_id`, `client_secret`, `access_token`
 
-Example masked output: `client_secret=abcde*************uvxyz`
+Príklad maskovaného výstupu: `client_secret=abcde*************uvxyz`
 
-You can disable masking by setting `mask_sensitive_data=False` parameter during logger initialization.
+Maskovanie môžete zakázať nastavením parametra `mask_sensitive_data=False` počas inicializácie loggeru.
 
 
-## Usage Example
+## Príklad použitia
 
-### Step 1: Create a Logger Subclass
+### Krok 1: Vytvorenie podtriedy Loggeru
 
 
 ```python
@@ -40,7 +40,7 @@ class ConsoleLogger(TatrapayPlusLogger):
     def write_line(self, line):
         print(line)
 
-# Extended version for logging to file
+# Rozšírená verzia pre logovanie do súboru
 class FileLogger(TatrapayPlusLogger):
     def __init__(self, file_path, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -51,7 +51,7 @@ class FileLogger(TatrapayPlusLogger):
             f.write(str(line) + "\n")
 ```
 
-### Step 2: Inject the Logger into the Client
+### Krok 2: Vloženie loggeru do klienta
 
 ```python
 from tatrapayplus.client import TBPlusSDK
@@ -66,15 +66,15 @@ client = TBPlusSDK(
 )
 ```
 
-## Customization
-You can customize the masking fields:
+## Prispôsobenie
+Maskovacie polia si môžete prispôsobiť:
 ```python
 logger.mask_body_fields = ["client_id", "client_secret", "access_token"]
 logger.mask_header_fields = ["Authorization"]
 logger.mask_sensitive_data = True  # or False to disable masking
 ```
 
-## Example output
+## Príklad výstupu
 ```
 INFO [2025-04-10 13:11:51] [INFO] Request:
 Method: POST

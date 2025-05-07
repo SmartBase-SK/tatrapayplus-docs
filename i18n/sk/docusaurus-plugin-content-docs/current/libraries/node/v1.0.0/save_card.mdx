@@ -1,16 +1,16 @@
-# Remember card(ComfortPay)
+# Zapamätanie karty (ComfortPay)
 
-ComfortPay is separate service that gives ability to remember user credit card for future usage.
+ComfortPay je samostatná služba, ktorá umožňuje zapamätať si kreditnú kartu používateľa pre budúce použitie.
 
 :::warning
 
-If you want to use this functionality **you need to be eligible** for this feature. For more info please contact Tatrabanka support.
+Ak chcete túto funkciu používať, **musíte na ňu spĺňať podmienky**. Pre viac informácií kontaktujte podporu Tatrabanky.
 
 :::
 
-## Register to save user card
+## Registrácia pre uloženie karty
 
-To be able to save user credit card you need to do one payment and specify parameter `cardDetail.comfortPay.registerForComfortPay`.
+Pre uloženie údajov o kreditnej karte používateľa je potrebné vykonať jednu platbu a zadať parameter `card_detail.comfort_pay`.
 
 ```javascript
 const { data, error } = await sdk.createPayment(
@@ -40,9 +40,9 @@ const { data, error } = await sdk.createPayment(
 );
 ```
 
-## Retrieve and save card token
+## Získanie a uloženie tokenu karty
 
-After the successful payment with `cardDetail.comfortPay.registerForComfortPay=true` you will receive data about customer card in `savedCard` variable.
+Po úspešnej platbe s `cardDetail.comfortPay.registerForComfortPay=true` dostanete údaje o zákazníckej karte v premennej `savedCard`.
 
 ```javascript
 const paymentId = req.query.paymentId; // based on your server
@@ -62,15 +62,15 @@ const {simpleStatus, savedCard, data, error} = await sdk.getPaymentStatus(paymen
 // }
 ```
 
-| Property         | Purpose                                                                                                                            |
+| Premenná         | Popis                                                                                                                            |
 |------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| cid              | This token should be saved to persistent storage on customer                                                                      |
-| maskedCardNumber | Can be shown to user to be able to pickup from saved cards                                                                        |
-| creditCard       | Data about card based on `maskedCardNumber` produced by [credit-card-type library](https://www.npmjs.com/package/credit-card-type) |
+| cid              | Tento token by mal byť uložený pre účet zákazníka.                                                                      |
+| maskedCardNumber | Môže byť zobrazené používateľovi, aby si mohol vybrať z uložených kariet                                                                        |
+| creditCard       | Údaje podľa `maskedCardNumber` vytvorené v [credit-card-type knižnici](https://www.npmjs.com/package/credit-card-type) |
 
-## Use saved token
+## Použitie uloženého tokenu
 
-After you saved `cid` token to customer. You should show customer saved cards in your website. When user select some of the saved card you need to pass `cid` to `generateSignedCardIdFromCid` and result of this function can be passed to `comfortPay.signedCardId`.
+Po uložení tokenu `cid` pre zákazníka by ste mali zákazníkovi zobraziť uložené karty na vašej webovej stránke. Keď si používateľ vyberie jednu z uložených kariet, musíte odovzdať `cid` funkcii `generateSignedCardIdFromCid` a výsledok tejto funkcie je možné odovzdať do `comfortPay.signedCardId`.
 
 ```javascript
 // highlight-start
@@ -104,4 +104,4 @@ const { data, error } = await sdk.createPayment(
 );
 ```
 
-<Button label="See full API reference" link="/docs/api/get-payment-intent-status"/>
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/get-payment-intent-status"/>

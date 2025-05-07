@@ -1,11 +1,11 @@
 
-# Handling errors
+# Riešenie chýb
 
-When using the `TBPlusSDK`, all API requests are wrapped with internal error handling logic. If the API returns an error, a custom exception **`TatrapayPlusApiException`** is raised. This allows you to catch and respond to failures in a structured way.
+Pri použití `TBPlusSDK` sú všetky požiadavky API obalené internou logikou spracovania chýb. Ak API vráti chybu, vyvolá sa vlastná výnimka **`TatrapayPlusApiException`**. To vám umožňuje zachytiť a reagovať na zlyhania štruktúrovaným spôsobom.
 
-## Basic usage
+## Základné použitie
 
-Wrap all client calls in a `try/except` block to catch and handle `TatrapayPlusApiException`.
+Zabaľte všetky volania klienta do bloku `try/except` na zachytenie a spracovanie výnimky `TatrapayPlusApiException`.
 
 ```python
 from tatrapayplus.errors import TatrapayPlusApiException
@@ -20,14 +20,13 @@ except TatrapayPlusApiException as e:
     print("Payment failed:", e)
     # Handle error
 ```
-## Error body types
+## Typy tela chyby
 
-When a `TatrapayPlusApiException` is raised, the `error_body` attribute will contain **one of three** structured model instances, depending on which endpoint was called and what kind of error occurred.
+Keď sa vyvolá výjimka `TatrapayPlusApiException`, atribút `error_body` bude obsahovať **jednu z troch** inštancií štruktúrovaného modelu v závislosti od toho, ktorý koncový bod bol volaný a aký druh chyby sa vyskytol.
+### Podporované modely
 
-### Supported models
-
-| Model                      | Description                                     | When it's used                    |
+| Model                      | Popis                                     | Kedy je použitá                    |
 |---------------------------|-------------------------------------------------|-----------------------------------|
-| `GetAccessTokenResponse400` | Returned from the auth endpoint when authentication fails. | Invalid client credentials        |
-| `Field400ErrorBody`         | Returned when a `400 Bad Request` is caused by invalid input or unsupported operation. | Validation/business rule errors   |
-| `Field40XErrorBody`         | Returned for other 40X errors like `403`, `404`, etc.           | Authorization or access issues    |
+| `GetAccessTokenResponse400` | Vrátené z koncového bodu autorizácie, keď autentifikácia zlyhá. | Neplatné API údaje klienta        |
+| `Field400ErrorBody`         | Vráti sa, keď je chyba „400 Bad Request“ spôsobená neplatným vstupom alebo nepodporovanou operáciou. | Chyby overovania/business logiky   |
+| `Field40XErrorBody`         | Vrátené pre iné chyby 40X, ako napríklad `403`, `404` atď.           | Problémy s autorizáciou alebo prístupom    |

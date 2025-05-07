@@ -1,16 +1,16 @@
-# Remember card(ComfortPay)
+# Zapamätanie karty (ComfortPay)
 
-ComfortPay is separate service that gives ability to remember user credit card for future usage.
+ComfortPay je samostatná služba, ktorá umožňuje zapamätať si kreditnú kartu používateľa pre budúce použitie.
 
 :::warning
 
-If you want to use this functionality **you need to be eligible** for this feature. For more info please contact Tatrabanka support.
+Ak chcete túto funkciu používať, **musíte na ňu spĺňať podmienky**. Pre viac informácií kontaktujte podporu Tatrabanky.
 
 :::
 
-## Register to save user card
+## Registrácia pre uloženie karty
 
-To be able to save user credit card you need to do one payment and specify parameter `card_detail.comfort_pay`.
+Pre uloženie údajov o kreditnej karte používateľa je potrebné vykonať jednu platbu a zadať parameter `card_detail.comfort_pay`.
 
 ```php
 $initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\InitiatePaymentRequest([
@@ -33,9 +33,9 @@ $initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\Initiat
 ]);
 ```
 
-## Retrieve and save card token
+## Získanie a uloženie tokenu karty
 
-After the successful payment with `card_detail.comfort_pay = RegisterForComfortPayObj(["register_for_comfort_pay" => true])` you will receive data about customer card in `saved_card` variable.
+Po úspešnej platbe s `card_detail.comfort_pay = RegisterForComfortPayObj(["register_for_comfort_pay" => true])` dostanete údaje o zákazníckej karte v premennej `saved_card`.
 
 ```php
 $payment_id = 'b54afd37-5bb9-4080-9416-5ec450779087'; // Retrieved from initiatePayment
@@ -48,14 +48,14 @@ $comfort_pay_obj = $status_obj->getComfortPay(); // CardPayStatusStructureComfor
 $comfort_pay_obj->getCid(); // '123'
 ```
 
-| Property         | Purpose                                                                                                                            |
+| Premenná         | Popis                                                                                                                            |
 |------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| cid              | This token should be saved to persistent storage on customer                                                                      |
-| masked_card_number | Can be shown to user to be able to pickup from saved cards                                                                        |
+| cid              | Tento token by mal byť uložený pre účet zákazníka.                                                                      |
+| masked_card_number | Môže byť zobrazené používateľovi, aby si mohol vybrať z uložených kariet
 
-## Use saved token
+## Použitie uloženého tokenu
 
-After you saved `cid` token to customer. You should show customer saved cards on your website. When user selects one of the saved cards, you need to pass `cid` to `TatraPayPlusAPIApi::generateSignedCardId` and result of this function can be passed to `comfort_pay.SignedCardIdObj()`.
+Po uložení tokenu `cid` pre zákazníka by ste mali zákazníkovi zobraziť uložené karty na vašej webovej stránke. Keď si používateľ vyberie jednu z uložených kariet, musíte odovzdať `cid` funkcii `TatraPayPlusAPIApi::generateSignedCardId` a výsledok tejto funkcie je možné odovzdať funkcii `comfort_pay.SignedCardIdObj()`.
 
 ```php
 $cid = '123'; // cid taken from stored customer
@@ -91,4 +91,4 @@ $initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\Initiat
 ```
 
 
-<Button label="See full API reference" link="/docs/api/get-payment-intent-status"/>
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/get-payment-intent-status"/>

@@ -1,11 +1,11 @@
 
-# Handling errors
+# Riešenie chýb
 
-When using the `TatraPayPlusAPIApi`, all API requests are wrapped with internal error handling logic. If the API returns an error, a custom **`Tatrapayplus\TatrapayplusApiClient\ApiException`** is raised. This allows you to catch and respond to failures.
+Pri použití `TatraPayPlusAPIApi` sú všetky požiadavky API obalené internou logikou spracovania chýb. Ak API vráti chybu, vyvolá sa vlastná výnimka **`TatrapayPlusApiException`**. To vám umožňuje zachytiť a reagovať na zlyhania štruktúrovaným spôsobom.
 
-## Basic usage
+## Základné použitie
 
-Wrap all client calls in a `try/catch` block to catch and handle `ApiException`.
+Zabaľte všetky volania klienta do bloku `try/catch` na zachytenie a spracovanie výnimky `ApiException`.
 
 ```php
 use Tatrapayplus\TatrapayplusApiClient\ApiException;
@@ -17,9 +17,9 @@ try {
     // Handle error
 }
 ```
-## Error details
+## Podrobnosti o chybe
 
-When `Tatrapayplus\TatrapayplusApiClient\ApiException` is raised, caught exception contains more information about given error.
+Keď sa vyvolá chyba `Tatrapayplus\TatrapayplusApiClient\ApiException`, zachytená výnimka obsahuje viac informácií o danej chybe.
 
 ```php
 use Tatrapayplus\TatrapayplusApiClient\ApiException;
@@ -27,17 +27,17 @@ use Tatrapayplus\TatrapayplusApiClient\ApiException;
 try {
     $tatrapayplus_api->getAvailableMethods();
 } catch (ApiException $e) {
-    $e->getResponseBody(); // HTTP body of the server response either as Json or string
-    $e->getResponseHeaders(); // HTTP response header
-    $e->getRequestBody(); // HTTP request body causing given exception
-    $e->getResponseObject(); // deserialized response object of type \Tatrapayplus\TatrapayplusApiClient\Model\Model400ErrorBody
+    $e->getResponseBody(); // Telo HTTP odpovede servera buď ako Json alebo reťazec
+    $e->getResponseHeaders(); // Hlavička HTTP odpovede
+    $e->getRequestBody(); // Telo HTTP požiadavky spôsobujúce danú výnimku
+    $e->getResponseObject(); // deserializovaný objekt odpovede typu \Tatrapayplus\TatrapayplusApiClient\Model\Model400ErrorBody
 }
 ```
 
 ## SanitizedInvalidArgumentException
 
-When `Tatrapayplus\TatrapayplusApiClient\Model\SanitizedInvalidArgumentException` is raised, corresponding API method was called with incorrect parameters.\
-Error message contains relevant information about missing parameter and attempted operation.
+Keď sa vyvolá výjimka `Tatrapayplus\TatrapayplusApiClient\Model\SanitizedInvalidArgumentException`, príslušná metóda API bola volaná s nesprávnymi parametrami.\
+Chybové hlásenie obsahuje relevantné informácie o chýbajúcom parametri a pokuse o operáciu.
 
 ```php
 $payment_id = null;

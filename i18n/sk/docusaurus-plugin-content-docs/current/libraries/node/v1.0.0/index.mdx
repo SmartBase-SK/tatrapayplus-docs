@@ -1,28 +1,28 @@
 import CodeBlock from '@theme/CodeBlock';
 import testTb from '!!raw-loader!@site/code_samples/node/v1.0.0/testTb.mjs';
 
-# Getting started
+# Úvod
 
-To be able to use and test payment gateway you need to have **Client ID** and **Client secret** from [TB developer portal](https://developer.tatrabanka.sk/).
-To obtain these tokens you need to register in developer portal, for more info, please visit [Developer portal documentation](https://developer.tatrabanka.sk/apihub/#/apis/f438e906-7845-4bc1-a028-73d3f9547d2a/show/doc?mode=view&uri=Ako-za_a_).
+Aby ste mohli používať a testovať platobnú bránu, potrebujete **Client ID** a **Client secret** z [TB developer portálu](https://developer.tatrabanka.sk/).
+Pre získanie týchto údajov sa musíte registrovať v TB developer portáli. Viac info na [Developer portál dokumentácia](https://developer.tatrabanka.sk/apihub/#/apis/f438e906-7845-4bc1-a028-73d3f9547d2a/show/doc?mode=view&uri=Ako-za_a_).
 
-# Installation
+# Inštalácia
 
-To install API client you need to install `tatrapayplus-node` package.
+Pre používanie API klienta je potrebné nainštalovať balík `tatrapayplus-node`.
 ```npm
 npm i @tatrabanka/tatrapayplus-node
 ```
 
-# Test installation
+# Overenie inštalácie
 
-You can test your installation with this minimal working setup.
+Pre overenie správnej inštalácie môžete využiť nasledujúcu minimálnu konfiguráciu.
 
-1. If you haven’t already, create an Account and Application in [TB developer portal](https://developer.tatrabanka.sk/).
-2. Copy the following code into a new file `test_tb.mjs`. Replace **API_KEY**, **API_SECRET** and **REDIRECT_URI** with values from your account.
+1. Ak ste tak ešte nevykonali, vytvorte si účet a aplikáciu v [TB developer portáli](https://developer.tatrabanka.sk/).
+2. Skopírujte nasledujúci kód do nového súboru `test_tb.mjs`. Zameňte **API_KEY**, **API_SECRET** a **REDIRECT_URI** údajmi z vášho účtu.
     <CodeBlock language="jsx">{testTb}</CodeBlock>
 
-3. Run: `node test_tb.mjs`
-4. If the command is successful, you’ll see the API response in JSON format like this:
+3. Spustite príkaz: `node test_tb.mjs`
+4. Ak sa príkaz vykonal úspešne, uvidíte odpoveď z API v JSON formáte:
     ```json
     {
         "paymentId": "fcdab2d3-f471-4434-8834-df3cebdab03d",
@@ -47,6 +47,4 @@ You can test your installation with this minimal working setup.
         ]
     }
     ```
-5. You can copy and paste `tatraPayPlusUrl` to you preferred browser, and you should see Tatrapay+ payment gateway. 🎉
-
-
+5. Môžete skopírovať `tatraPayPlusUrl` do vášho prehliadača a mali by ste sa dostať na platobnú bránu Tatrapay+. 🎉

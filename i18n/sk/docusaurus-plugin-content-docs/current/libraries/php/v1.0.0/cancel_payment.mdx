@@ -1,13 +1,13 @@
 import CodeBlock from '@theme/CodeBlock';
 
-# Cancel payment
+# Zrušenie platby
 
-This operation can be used with any payment method, but only if it is in `authorization_status=NEW`.
+Túto operáciu je možné použiť s akoukoľvek platobnou metódou, ale iba ak je `authorization_status=NEW`.
 
-In the case of payment method `PAY_LATER`, this method can also be used if `authorization_status=AUTH_DONE` and at the same time payment `status=CUSTOMER_CREATION_IN_PROGRESS`.
+V prípade platobnej metódy „PAY_LATER“ je možné túto metódu použiť aj vtedy, ak `authorization_status=AUTH_DONE` a zároveň platba obsahuje `status=CUSTOMER_CREATION_IN_PROGRESS`.
 
 import cancelPayment from '!!raw-loader!@site/code_samples/php/v1.0.0/cancel_payment.php';
 
 <CodeBlock language="php">{cancelPayment}</CodeBlock>
 
-<Button label="See full API reference" link="/docs/api/cancel-payment-intent"/>
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/cancel-payment-intent"/>

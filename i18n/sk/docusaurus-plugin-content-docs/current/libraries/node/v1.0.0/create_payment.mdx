@@ -2,19 +2,19 @@ import Button from '@site/src/components/Button';
 import CodeBlock from '@theme/CodeBlock';
 import createPayment from '!!raw-loader!@site/code_samples/node/v1.0.0/createPayment';
 
-# Create payment
+# Vytvorenie platby
 
-To be able to create payment you need to call `sdk.createPayment`.
+Pre vytvorenie platby cez Python SDK zavolajte metódu `sdk.createPayment`.
 
 <details>
-    <summary>Click to see example for all payment methods.</summary>
+    <summary>Zobraziť príklady pre všetky dostupné platobné metódy</summary>
     <CodeBlock language="jsx">{createPayment}</CodeBlock>
 </details>
 
-## Common data
+## Povinné údaje
 
-Payment gateway supports multiple payment methods and based on your need you can send more or less info in your `createPayment` call.
-However, some of the data are mandatory for all payment methods.
+Tatrapay+ podporuje viaceré platobné metódy. Na základe zvolenej metódy môžete v požiadavke doplniť dodatočné údaje.
+Niektoré údaje sú však **povinné** pre všetky typy platieb:
 
 ```javascript
 basePayment: {
@@ -28,20 +28,20 @@ basePayment: {
 
 :::warning
 
-Most common issue is that value in `instructedAmount.amountValue` field is not rounded properly and API will reject such a data.
-Please round your data to **2 decimals places**.
+Najčastejšia chyba nastáva, keď hodnota `instructed_amount.amount_value` nie je správne zaokrúhlená a API ju odmietne.
+Prosím zaokrúhlite vaše údaje na **2 desatinné miesta**.
 
 :::
 
-### Modify language and preferred method
+### Úprava jazyka a preferovanej metódy
 
-By default, tatrapay+ gateway will show all available payment methods and payment gateway is shown in default **Slovak** language.
-If you want to change this behaviour you can pass `language` and `preferredMethod` param to `createPayment`.
+V základe Tatrapay+ zobrazí všetky dostupné platobné metódy a bude zobrazená v **slovenskom** jazyku.
+Ak chcete upraviť toto správanie, môžete poslať parametre `language` a `preferred_method` do `create_payment`.
 
-If `preferredMethod` is available user will be directly navigated to this method.
+Ak je `preferred_method` dostupná, zákazník na ňu bude priamo nasmerovaný.
 
 <details>
-    <summary>Show gateway in English with bank transfer method</summary>
+    <summary>Zobrazenie brány v anglickom jazyku s platbou prevodom</summary>
 
 ```javascript
 const { data, error } = await sdk.createPayment(
@@ -56,28 +56,29 @@ const { data, error } = await sdk.createPayment(
 
 </details>
 
-### Redirect URI
+### Presmerovanie na URI
 
-Redirect URI is used as return address after customer finish payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/node/v1.0.0/process_payment).
+`redirect_uri` je použitá ako návratová adresa zákazníka po vykonaní platby. Táto URI je povinná a slúži na [spracovanie výsledku platby](/docs/libraries/node/v1.0.0/process_payment).
 
-If your application serves multiple locales with distinct URIs for example:
-- https://example.com for one locale
-- https://example.com/de/ for German users
+Ak vaša aplikácia poskytuje viacero jazykov s odlišnými URI, ako napr.:
+- https://example.com pre 1 jazyk
+- https://example.com/de/ pre nemecký jazyk
 
-you must register both URIs in the developer portal.
-Then, when making a `createPayment` request, be sure to include the redirect URI that matches the user's locale.
+musíte zaregistrovať obidve URI v developer portáli.
+Následne sa pri požiadavke `create_payment` uistite, že používate `redirect_uri` zodpovedajúcu správnemu jazyku.
+
 :::warning
 
-This URI must exactly match the URI defined in the [Developer Portal](https://developer.tatrabanka.sk/pages/devportal/sk/#/)
+Táto URI musí presne zodpovedať URI definovanej v [Developer Portáli](https://developer.tatrabanka.sk/pages/devportal/sk/#/)
 
 :::
 
-## Specific payment method data
+## Údaje špecifické pre platobnú metódu
 
-### Bank transfer and QR pay
+### Bankový prevod a platba cez QR kód
 
-For this payment method you need to define attribute `bankTransfer`. **It can be empty** or contains additional information.
-If you omit this attribute, bank transfer wouldn't be shown.
+Pre túto platobnú metódu musíte definovať atribút `bank_transfer`. **Môže byť prázdny** alebo obsahovať dodatočné informácie.
+Ak nepoužíjete tento atribút, bankový prevod nebude zobrazený.
 
 ```javascript
 bankTransfer: {
@@ -85,14 +86,14 @@ bankTransfer: {
 }
 ```
 
-### Card pay
+### Platba kartou
 
-This payment methods requires `cardDetail.cardHolder`, `userData.firstName` and `userData.lastName`.
-One of `userData.email` or `userData.phone` is required, based on these data are send notifications to customers.
+Táto platobná metóda vyžaduje `card_detail.card_holder`, `user_data.first_name` a `user_data.last_name`.
+Jeden z atribútov `user_data.email` alebo `user_data.phone` je povinný. Podľa týchto údajov budú zákazníkom zasielané notifikácie.
 
 :::tip
 
-The SDK automatically strips diacritical marks from characters in the `cardDetail.cardHolder` field, so **you don't need** to handle this conversion yourself.
+SDK automaticky odstráni diakritiku v atribúte `card_detail.card_holder`, takže ich **nemusíte** konvertovať.
 
 :::
 
@@ -110,12 +111,12 @@ cardDetail: {
 
 ### PayLater (Na splátky<sup>TB</sup>)
 
-This payment method requires information about items that were bought by customer.
-This structure is more complex and description of all fields can be found in [API reference](/docs/api/initiate-payment).
+Táto platobná metóda vyžaduje informácie o zakúpených položkách zákazníka.
+Ich štruktúra je komplexnejšia a popis všetkých údajov nájdete v [API príručke](/docs/api/initiate-payment).
 
 :::warning
 
-The API will reject requests where `instructedAmount.amountValue` doesn't match the **sum of all totalItemPrice** values.
+API odmietne požiadavky, v ktorých `instructed_amount.amount_value` sa nerovná **sume všetkých položiek**.
 
 :::
 
@@ -151,9 +152,9 @@ payLater: {
 }
 ```
 
-## Response
+## Odpoveď
 
-After you create reqeust to initiate payment you receive following data:
+Po vytvorení požiadavky na platbu obdržíte `InitiatePaymentResponse` s nasledujúcimi údajmi:
 ```json
 {
   "paymentId": "580ff61e-efdd-40e5-8bc4-c373d59cf0c2",
@@ -180,9 +181,9 @@ After you create reqeust to initiate payment you receive following data:
 ]
 }
 ```
-You should save `paymentId` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/node/v1.0.0/process_payment).
-Then you have two options of displaying payment gateway:
-1. Simply redirect user to gateway, field `tatraPayPlusUrl`.
-2. Show payment gateway in iframe. For detailed description how to use iframe please visit [Developer portal documentation](https://developer.tatrabanka.sk/apihub/#/apis/f438e906-7845-4bc1-a028-73d3f9547d2a/show/doc?mode=view&uri=iFrame-podpora)
+Mali ste si uložiť `paymentId` k objednávke spojenej s danou platbou. Neskôr ho budete potrebovať pre [zistenie stavu platby](/docs/libraries/node/v1.0.0/process_payment).
+Následne máte 2 možnosti pre zobrazenie platobnej brány:
+1. Presmerujete zákazník na bránu, podľa url z atribútu `tatraPayPlusUrl`.
+2. Zobrazenie v iframe. Pre detailné informácie o použití iframe zobrazenia prosím navštívte [Developer portál dokumentáciu](https://developer.tatrabanka.sk/apihub/#/apis/f438e906-7845-4bc1-a028-73d3f9547d2a/show/doc?mode=view&uri=iFrame-podpora)
 
-<Button label="See full API reference" link="/docs/api/initiate-payment"/>
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/initiate-payment"/>

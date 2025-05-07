@@ -1,68 +1,68 @@
 import CodeBlock from '@theme/CodeBlock';
 
-# Process payment
+# Spracovanie platby
 
-After completing the operations in the TatraPayPlus service, the user will be redirected to the **Redirect URL** provided during payment initialization.
+Po dokončení operácií v službe TatraPayPlus bude používateľ presmerovaný na **URL adresu presmerovania** uvedenú pri inicializácii platby.
 
-## Redirect params
+## Parametre presmerovania
 
-### Path Parameters for Redirection Without a Technical Error
+### Path parametre pre presmerovanie bez technickej chyby
 
-| Path Parameter  | Type   | Required/Optional | Description                                   |
-| --------------- | ------ | ----------------- | --------------------------------------------- |
-| `paymentId`     | string | Required          | Identifier of the payment instruction         |
-| `paymentMethod` | string | Required          | Code of the selected payment method           |
+| Path Parameter  | Typ    | Povinné          | Popis                                   |
+| --------------- | ------ | -----------------| --------------------------------------- |
+| `paymentId`     | string | Povinné          | ID platby                               |
+| `paymentMethod` | string | Povinné          | Kód zvolenej platobnej metódy           |
 
-### Path Parameters for Redirection in Case of a Technical Error
+### Path parametre pre presmerovanie v prípade technickej chyby
 
-| Path Parameter  | Type   | Required/Optional | Description                                   |
-| --------------- | ------ | ----------------- | --------------------------------------------- |
-| `paymentId`     | string | Required          | Identifier of the payment instruction         |
-| `error`         | string | Required          | Error code                                    |
-| `errorId`       | string | Required          | Unique error identifier                       |
+| Path Parameter  | Typ    | Povinné   | Popis                                   |
+| --------------- | ------ | ----------| --------------------------------------- |
+| `paymentId`     | string | Povinné   | ID platby                               |
+| `error`         | string | Povinné   | Kód chyby                               |
+| `errorId`       | string | Povinné   | unikátne ID chyby                       |
 
-### Example
+### Príklad
 
-Success ✔️
+Úspech ✔️
 ```bash
 https://theredirecturl.com/redirect?paymentId=e43f85a2-b21f-4ec2-b0a1-0e449d6972c7&paymentMethod=CARD_PAY
 ```
 
-Error ❌️
+Chyba ❌️
 ```bash
 https://theredirecturl.com/redirect?paymentId=e43f85a2-b21f-4ec2-b0a1-0e449d6972c7&error=FAILED&errorId=43ca30ec-2956-454c-9d1b-4bd2befee7c8
 ```
 
-## Retrieve payment status
+## Získanie stavu platby
 
-Based on received GET params you should retrieve status of payment as following:
+Na základe prijatých parametrov GET by ste mali získať stav platby nasledovne:
 
 import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v1.0.0/get_payment_status.php';
 
 <CodeBlock language="php">{getPaymentStatus}</CodeBlock>
 
-Result includes a `simple_status` attribute that can have one of three values: `ACCEPTED`, `PENDING`, or `REJECTED`.\
-You can retrieve it by calling `$response['object']->getSimpleStatus()` as shown in the example above.\
-Your implementation should take the appropriate action based on the value of `simple_status`.
+Výsledok obsahuje atribút `simple_status`, ktorý môže mať jednu z troch hodnôt: `CAPTURE`, `AUTHORIZED` alebo `REJECTED`.\
+Viete ho získať volaním `$response['object']->getSimpleStatus()`, ako je ukázané v príklade vyššie.\
+Vaša implementácia by mala vykonať príslušné akcie na základe hodnoty `simple_status`.
 
-`$response['object']` of type `PaymentIntentStatusResponse` contains all the information based on structure described in [API reference](/docs/api/get-payment-intent-status).
+`$response['object']` typu `PaymentIntentStatusResponse` obsahuje všetky informácie na základe štruktúry opísanej v [API príručke](/docs/api/get-payment-intent-status).
 
-The response also includes saved card information (if the customer chooses to save their card details).
-More details on this feature can be found [💳 here 💳](/docs/libraries/php/v1.0.0/save_card).
+Odpoveď obsahuje aj uložené informácie o karte (ak sa zákazník rozhodne uložiť údaje o svojej karte).
+Viac podrobností o tejto funkcii nájdete [💳 tu 💳](/docs/libraries/php/v1.0.0/save_card).
 
-## Periodical task
+## Periodická úloha
 
-Some payments may be processed later.
-Therefore, you should periodically check the status of **"pending" payments**.
-We recommend setting up a scheduled task that retrieves all pending payments from your system.
-Using the saved `payment_id` with the `getPaymentIntentStatus` method, you can obtain the current status and take the appropriate action in your system.
+Niektoré platby môžu byť spracované neskôr.
+Preto by ste mali pravidelne kontrolovať stav **„čakajúcich“ platieb**.
+Odporúčame nastaviť plánovanú úlohu, ktorá z vášho systému načíta všetky čakajúce platby.
+Pomocou uloženého `payment_id` s metódou `get_payment_status` môžete získať aktuálny stav a vykonať príslušné akcie vo vašom systéme.
 
-Recommended pooling rates based on **age of orders**:
+Odporúčané intervaly získania stavov na základe **veku objednávok**:
 
-| Time Range            | Polling Frequency   |
+| Časový rozsah         | Frekvencia dopytu   |
 |-----------------------|---------------------|
-| First hour            | Every 5 minutes     |
-| 1 hour - 24 hours     | Every hour          |
-| After 24 hours        | 5 times per day     |
+| 1. hodina             | Každých 5 minút     |
+| 1 hodina - 24 hodín   | Každú hodinu        |
+| Po 24 hodinách        | 5-krát denne        |
 
-<Button label="See full API reference" link="/docs/api/get-payment-intent-status"/>
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/get-payment-intent-status"/>

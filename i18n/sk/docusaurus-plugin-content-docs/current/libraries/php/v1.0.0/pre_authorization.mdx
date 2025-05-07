@@ -1,18 +1,18 @@
 import CodeBlock from '@theme/CodeBlock';
 
-# Pre authorization
+# Predautorizácia
 
-We recommend to use the "pre-authorization" transaction type when expecting an increased number of cancellation requests or partial cancellation of payments due to unavailability of goods/services, changes in the price of the order, etc.
-If you want to use pre-authorization for card payments you can pass `is_pre_authorization: true` while initiating payment.
+Odporúčame použiť typ transakcie „predautorizácia“ v prípade predpokladu zvýšeného počtu žiadostí o zrušenie alebo čiastočného zrušenia platieb z dôvodu nedostupnosti tovaru/služieb, zmien ceny objednávky a pod.
+Ak chcete použiť predautorizáciu pre platby kartou, môžete pri iniciovaní platby zadať `is_pre_authorization: true`.
 
 import createPaymentPreAuthorization from '!!raw-loader!@site/code_samples/php/v1.0.0/create_payment_pre_authorization.php';
 
 <CodeBlock language="php">{createPaymentPreAuthorization}</CodeBlock>
 
-In case of payment by pre-authorisation, the merchant is obliged to ensure the termination/cancellation of the pre-authorisation by **calling the online interface within 7 days** from the date on which the pre-authorisation was made.
-If the merchant performs a pre-authorisation transaction for the purpose of [registering the card for ComfortPay](/docs/libraries/php/v1.0.0/save_card), the transaction will not be cleared and will be released to the cardholder by the cardholder's bank within a few days.
-We do not recommend making a subsequent reversal of this type of transaction. This is due to the authorization message containing all the information for a future recurring payment.
-There is a risk that the customer's bank will not retain this information as part of the cancellation of the transaction.
+V prípade platby prostredníctvom predautorizácie je obchodník povinný zabezpečiť ukončenie/zrušenie predautorizácie **zavolaním na online rozhranie do 7 dní** od dátumu, kedy bola predautorizácia vykonaná.
+Ak obchodník vykoná transakciu predautorizácie za účelom [registrácie karty pre ComfortPay](/docs/libraries/php/v1.0.0/save_card), transakcia nebude zúčtovaná a bude držiteľovi karty uvoľnená bankou držiteľa karty v priebehu niekoľkých dní.
+Neodporúčame vykonávať následné storno tohto typu transakcie. Je to z dôvodu, že autorizačná správa obsahuje všetky informácie pre budúcu opakovanú platbu.
+Existuje riziko, že banka zákazníka si tieto informácie v rámci zrušenia transakcie neuchová.
 
 
 import confirmCancelPreAuthorization from '!!raw-loader!@site/code_samples/php/v1.0.0/confirm_cancel_pre_authorization.php';
@@ -22,4 +22,4 @@ import confirmCancelPreAuthorization from '!!raw-loader!@site/code_samples/php/v
 
 
 
-<Button label="See full API reference" link="/docs/api/cancel-payment-intent"/>
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/cancel-payment-intent"/>

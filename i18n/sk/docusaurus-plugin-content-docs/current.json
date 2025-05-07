@@ -1,0 +1,58 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.apisidebar.category.TatraPayPlus API": {
+    "message": "TatraPayPlus API",
+    "description": "The label for category TatraPayPlus API in sidebar apisidebar"
+  },
+  "sidebar.apisidebar.category.TatraPayPlus Appearance API": {
+    "message": "TatraPayPlus Appearance API",
+    "description": "The label for category TatraPayPlus Appearance API in sidebar apisidebar"
+  },
+  "sidebar.apisidebar.category.TatraPayPlus DirectAPI": {
+    "message": "TatraPayPlus DirectAPI",
+    "description": "The label for category TatraPayPlus DirectAPI in sidebar apisidebar"
+  },
+  "sidebar.apisidebar.category.Authentication": {
+    "message": "Authentication",
+    "description": "The label for category Authentication in sidebar apisidebar"
+  },
+  "sidebar.apisidebar.doc.Initiate payment intent": {
+    "message": "Initiate payment intent",
+    "description": "The label for the doc item Initiate payment intent in sidebar apisidebar, linking to the doc api/initiate-payment"
+  },
+  "sidebar.apisidebar.doc.Payment methods list": {
+    "message": "Payment methods list",
+    "description": "The label for the doc item Payment methods list in sidebar apisidebar, linking to the doc api/get-methods"
+  },
+  "sidebar.apisidebar.doc.Payment intent status.": {
+    "message": "Payment intent status.",
+    "description": "The label for the doc item Payment intent status. in sidebar apisidebar, linking to the doc api/get-payment-intent-status"
+  },
+  "sidebar.apisidebar.doc.Update payment intent": {
+    "message": "Update payment intent",
+    "description": "The label for the doc item Update payment intent in sidebar apisidebar, linking to the doc api/update-payment-intent"
+  },
+  "sidebar.apisidebar.doc.Cancel payment intent.": {
+    "message": "Cancel payment intent.",
+    "description": "The label for the doc item Cancel payment intent. in sidebar apisidebar, linking to the doc api/cancel-payment-intent"
+  },
+  "sidebar.apisidebar.doc.Set appearance parameters for TatraPayPlus": {
+    "message": "Set appearance parameters for TatraPayPlus",
+    "description": "The label for the doc item Set appearance parameters for TatraPayPlus in sidebar apisidebar, linking to the doc api/set-appearance"
+  },
+  "sidebar.apisidebar.doc.Set logo for TatraPayPlus": {
+    "message": "Set logo for TatraPayPlus",
+    "description": "The label for the doc item Set logo for TatraPayPlus in sidebar apisidebar, linking to the doc api/set-logo"
+  },
+  "sidebar.apisidebar.doc.Create direct transaction request": {
+    "message": "Create direct transaction request",
+    "description": "The label for the doc item Create direct transaction request in sidebar apisidebar, linking to the doc api/create-direct-transaction-request"
+  },
+  "sidebar.apisidebar.doc.Obtain OAuth2 Access Token": {
+    "message": "Obtain OAuth2 Access Token",
+    "description": "The label for the doc item Obtain OAuth2 Access Token in sidebar apisidebar, linking to the doc api/get-access-token"
+  }
+}

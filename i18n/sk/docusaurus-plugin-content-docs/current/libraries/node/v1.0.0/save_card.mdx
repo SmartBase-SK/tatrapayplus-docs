@@ -1,0 +1,107 @@
+# Remember card(ComfortPay)
+
+ComfortPay is separate service that gives ability to remember user credit card for future usage.
+
+:::warning
+
+If you want to use this functionality **you need to be eligible** for this feature. For more info please contact Tatrabanka support.
+
+:::
+
+## Register to save user card
+
+To be able to save user credit card you need to do one payment and specify parameter `cardDetail.comfortPay.registerForComfortPay`.
+
+```javascript
+const { data, error } = await sdk.createPayment(
+  {
+    userData: {
+      firstName: "Jozko",
+      lastName: "Hruska",
+      phone: "+421911123456",
+    },
+    cardDetail: {
+      cardHolder: "Jozko Hruska",
+      // highlight-start
+      comfortPay: {
+        registerForComfortPay: true
+      }
+      // highlight-end
+    },
+    basePayment: {
+      endToEnd: "/VS0123456789/SS0123456789/KS123456",
+      instructedAmount: {
+        amountValue: 10000,
+        currency: "EUR",
+      },
+    },
+  },
+  REDIRECT_URI,
+);
+```
+
+## Retrieve and save card token
+
+After the successful payment with `cardDetail.comfortPay.registerForComfortPay=true` you will receive data about customer card in `savedCard` variable.
+
+```javascript
+const paymentId = req.query.paymentId; // based on your server
+const {simpleStatus, savedCard, data, error} = await sdk.getPaymentStatus(paymentId);
+// savedCard == {
+//   cid: "123456789",
+//   maskedCardNumber: "440577******5558",
+//   creditCard: {
+//     niceType: "Visa",
+//     type: "visa",
+//     patterns: [4],
+//     gaps: [4, 8, 12],
+//     lengths: [16, 18, 19],
+//     code: { name: "CVV", size: 3 },
+//     matchStrength: 1,
+//   },
+// }
+```
+
+| Property         | Purpose                                                                                                                            |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| cid              | This token should be saved to persistent storage on customer                                                                      |
+| maskedCardNumber | Can be shown to user to be able to pickup from saved cards                                                                        |
+| creditCard       | Data about card based on `maskedCardNumber` produced by [credit-card-type library](https://www.npmjs.com/package/credit-card-type) |
+
+## Use saved token
+
+After you saved `cid` token to customer. You should show customer saved cards in your website. When user select some of the saved card you need to pass `cid` to `generateSignedCardIdFromCid` and result of this function can be passed to `comfortPay.signedCardId`.
+
+```javascript
+// highlight-start
+const cidFromPersistentStorage = db.customer.get('cid');
+const signedCardId = sdk.generateSignedCardIdFromCid(cidFromPersistentStorage);
+// highlight-end
+const { data, error } = await sdk.createPayment(
+  {
+    userData: {
+      firstName: "Jozko",
+      lastName: "Hruska",
+      phone: "+421911123456",
+    },
+    cardDetail: {
+      cardHolder: "Jozko Hruska",
+      // highlight-start
+      comfortPay: {
+        signedCardId: signedCardId
+      }
+      // highlight-end
+    },
+    basePayment: {
+      endToEnd: "/VS0123456789/SS0123456789/KS123456",
+      instructedAmount: {
+        amountValue: 10000,
+        currency: "EUR",
+      },
+    },
+  },
+  REDIRECT_URI,
+);
+```
+
+<Button label="See full API reference" link="/docs/api/get-payment-intent-status"/>

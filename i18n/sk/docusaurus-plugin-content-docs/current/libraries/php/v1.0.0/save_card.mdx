@@ -1,0 +1,94 @@
+# Remember card(ComfortPay)
+
+ComfortPay is separate service that gives ability to remember user credit card for future usage.
+
+:::warning
+
+If you want to use this functionality **you need to be eligible** for this feature. For more info please contact Tatrabanka support.
+
+:::
+
+## Register to save user card
+
+To be able to save user credit card you need to do one payment and specify parameter `card_detail.comfort_pay`.
+
+```php
+$initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\InitiatePaymentRequest([
+    "base_payment" => new Tatrapayplus\TatrapayplusApiClient\Model\BasePayment([
+        "instructed_amount" => new Tatrapayplus\TatrapayplusApiClient\Model\Amount([
+            "amount_value" => 10.0,
+            "currency" => "EUR",
+        ]),
+        "end_to_end" => new Tatrapayplus\TatrapayplusApiClient\Model\E2e([
+            "variable_symbol" => "ORDER123456",
+        ]),
+    ]),
+    "card_detail" => new Tatrapayplus\TatrapayplusApiClient\Model\CardDetail([
+        "card_holder" => "Janko Hrasko",
+        "comfort_pay" => new Tatrapayplus\TatrapayplusApiClient\Model\RegisterForComfortPayObj([
+            "register_for_comfort_pay" => true,
+        ]),
+    ]),
+    // ...
+]);
+```
+
+## Retrieve and save card token
+
+After the successful payment with `card_detail.comfort_pay = RegisterForComfortPayObj(["register_for_comfort_pay" => true])` you will receive data about customer card in `saved_card` variable.
+
+```php
+$payment_id = 'b54afd37-5bb9-4080-9416-5ec450779087'; // Retrieved from initiatePayment
+$response = $tatrapayplus_api->getPaymentIntentStatus($payment_id);
+
+$status_obj = $response["object"]->getStatus();
+
+$status_obj->getMaskedCardNumber(); // '440577******5558'
+$comfort_pay_obj = $status_obj->getComfortPay(); // CardPayStatusStructureComfortPay instance
+$comfort_pay_obj->getCid(); // '123'
+```
+
+| Property         | Purpose                                                                                                                            |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| cid              | This token should be saved to persistent storage on customer                                                                      |
+| masked_card_number | Can be shown to user to be able to pickup from saved cards                                                                        |
+
+## Use saved token
+
+After you saved `cid` token to customer. You should show customer saved cards on your website. When user selects one of the saved cards, you need to pass `cid` to `TatraPayPlusAPIApi::generateSignedCardId` and result of this function can be passed to `comfort_pay.SignedCardIdObj()`.
+
+```php
+$cid = '123'; // cid taken from stored customer
+$public_key_content = '...'; // contents of public key file in string format
+$signed_card_id = TatraPayPlusAPIApi::generateSignedCardId(
+    $cid,
+    $public_key_content
+);
+
+$initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\InitiatePaymentRequest([
+    "base_payment" => new Tatrapayplus\TatrapayplusApiClient\Model\BasePayment([
+        "instructed_amount" => new Tatrapayplus\TatrapayplusApiClient\Model\Amount([
+            "amount_value" => 10.0,
+            "currency" => "EUR",
+        ]),
+        "end_to_end" => new Tatrapayplus\TatrapayplusApiClient\Model\E2e([
+            "variable_symbol" => "ORDER123456",
+        ]),
+    ]),
+    "user_data" => new Tatrapayplus\TatrapayplusApiClient\Model\UserData([
+        "first_name" => "Janko",
+        "last_name" => "Hrasko",
+        "email" => "janko.hrasko@example.com",
+    ]),
+    "card_detail" => new Tatrapayplus\TatrapayplusApiClient\Model\CardDetail([
+        "card_holder" => "Janko Hrasko",
+        "comfort_pay" => new Tatrapayplus\TatrapayplusApiClient\Model\SignedCardIdObj([
+            "signed_card_id" => $signed_card_id
+        ]),
+    ]),
+    // ...
+]);
+```
+
+
+<Button label="See full API reference" link="/docs/api/get-payment-intent-status"/>

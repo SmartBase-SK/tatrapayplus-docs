@@ -1,0 +1,25 @@
+import CodeBlock from '@theme/CodeBlock';
+
+# Pre authorization
+
+We recommend to use the "pre-authorization" transaction type in case of the assumption of an increased number of cancellation requests or partial cancellation of payments due to unavailability of goods/services, changes in the price of the order, etc.
+If you want to use pre-authorization for card payments you can pass `is_pre_authorization: true` while initiating payment.
+
+import createPaymentPreAuthorization from '!!raw-loader!@site/code_samples/python/v1.0.0/create_payment_pre_authorization.py';
+
+<CodeBlock language="python">{createPaymentPreAuthorization}</CodeBlock>
+
+In case of payment by pre-authorisation, the merchant is obliged to ensure the termination/cancellation of the pre-authorisation by **calling the online interface within 7 days** from the date on which the pre-authorisation was made.
+If the merchant performs a pre-authorisation transaction for the purpose of [registering the card for ComfortPay](/docs/libraries/python/v1.0.0/save_card), the transaction will not be cleared and will be released to the cardholder by the cardholder's bank within a few days.
+We do not recommend making a subsequent reversal of this type of transaction. This is due to the authorization message containing all the information for a future recurring payment.
+There is a risk that the customer's bank will not retain this information as part of the cancellation of the transaction.
+
+
+import confirmCancelPreAuthorization from '!!raw-loader!@site/code_samples/python/v1.0.0/confirm_cancel_pre_authorization.py';
+
+<CodeBlock language="python">{confirmCancelPreAuthorization}</CodeBlock>
+
+
+
+
+<Button label="See full API reference" link="/docs/api/cancel-payment-intent"/>

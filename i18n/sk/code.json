@@ -440,5 +440,14 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "Choose your platform": {
+    "message": "Vyberte si svoju platformu"
+  },
+  "tatrapay+ payment gateway": {
+    "message": "Tatrapay+ platobná brána"
+  },
+  "Create the future of banking with us.": {
+    "message": "Vytvorte s nami budúcnosť bankovníctva."
   }
 }

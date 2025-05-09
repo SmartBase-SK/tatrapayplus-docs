@@ -8,6 +8,7 @@ import styles from './index.module.css';
 import JsSvg from './assets/js.svg';
 import PythonSvg from './assets/python.svg';
 import PhpSvg from './assets/php.svg';
+import Translate, {translate} from "@docusaurus/Translate";
 
 
 function HomepageHeader() {
@@ -16,9 +17,11 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+          <Translate>tatrapay+ payment gateway</Translate>
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">
+            <Translate>Create the future of banking with us.</Translate>
+        </p>
       </div>
     </header>
 
@@ -29,10 +32,14 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title}`}
+      title={
+        translate({
+          message: 'tatrapay+ payment gateway',
+        })
+      }
       description="Explore guides, code samples, and API reference documentation for tatrapay+ payment gateway.">
       <HomepageHeader />
-        <h2 className={"platforms__title"}>Choose your platform</h2>
+        <h2 className={"platforms__title"}><Translate>Choose your platform</Translate></h2>
       <div className="platforms">
           <Link href={'/docs/libraries/node/v1.0.0'} className="platforms__item">
             <JsSvg></JsSvg>

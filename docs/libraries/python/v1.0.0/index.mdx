@@ -9,13 +9,13 @@ pip install tatrapayplus-python
 ```
 # Client Initialization
 
-To start working with the API, you need to initialize the `TatrapayPlusClient` with the following parameters:
+To start working with the API, you need to initialize the `TBPlusSDK` with the following parameters:
 
 ```python
-from tatrapayplus import TatrapayPlusClient
+from tatrapayplus import TBPlusSDK
 from tatrapayplus.enums import Mode
 
-client = TatrapayPlusClient(
+client = TBPlusSDK(
     "your-client-id",                                  # Client ID
     "your-client-secret",                              # Client secret
     mode=Mode.SANDBOX,                                 # Mode you are working with: SANDBOX or PRODUCTION

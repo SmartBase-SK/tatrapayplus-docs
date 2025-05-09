@@ -1,0 +1,78 @@
+# Zapamätanie karty (ComfortPay)
+
+ComfortPay je samostatná služba, ktorá umožňuje zapamätať si kreditnú kartu používateľa pre budúce použitie.
+
+:::warning
+
+Ak chcete túto funkciu používať, **musíte na ňu spĺňať podmienky**. Pre viac informácií kontaktujte podporu Tatrabanky.
+
+:::
+
+## Registrácia pre uloženie karty
+
+Pre uloženie údajov o kreditnej karte používateľa je potrebné vykonať jednu platbu a zadať parameter `card_detail.comfort_pay`.
+
+```python
+payment_data = InitiatePaymentRequest(
+    base_payment=BasePayment(
+        instructed_amount=Amount(
+            amount_value=10.0,
+            currency="EUR",
+        ),
+        end_to_end="ORDER123456",
+    ),
+    card_detail=CardDetail(
+        card_holder="Janko Hruška",
+        comfort_pay=RegisterForComfortPayObj(register_for_comfort_pay=True)
+    )
+    ...
+)
+```
+
+## Získanie a uloženie tokenu karty
+
+Po úspešnej platbe s `card_detail.comfort_pay = RegisterForComfortPayObj(register_for_comfort_pay=True)` dostanete údaje o zákazníckej karte v premennej `saved_card`.
+
+```python
+payment_id="b54afd37-5bb9-4080-9416-5ec450779087" # Retrieved from create payment intent
+response = client.get_payment_status(payment_id)
+#response["saved_card"] -> {'cid': '123456789', 'credit_card': 'Visa', 'masked_card_number': '440577******5558'}
+```
+
+| Premenná         | Popis                                                                                                                            |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| cid              | Tento token by mal byť uložený pre účet zákazníka.                                                                      |
+| masked_card_number | Môže byť zobrazené používateľovi, aby si mohol vybrať z uložených kariet                                                                        |
+| credit_card       | Názov typu kreditnej karty |
+
+## Použitie uloženého tokenu
+
+Po uložení tokenu `cid` pre zákazníka by ste mali zákazníkovi zobraziť uložené karty na vašej webovej stránke. Keď si používateľ vyberie jednu z uložených kariet, musíte odovzdať `cid` funkcii `generate_signed_card_id_from_cid` a výsledok tejto funkcie je možné odovzdať funkcii `comfort_pay.SignedCardIdObj()`.
+
+```python
+cid = customer.cid  # cid taken from stored customer
+signed_cid = client.generate_signed_card_id_from_cid(cid)
+payment_data = InitiatePaymentRequest(
+    base_payment=BasePayment(
+        instructed_amount=Amount(
+            amount_value=120.0,
+            currency="EUR",
+        ),
+        end_to_end="ORDER123456",
+    ),
+    user_data=UserData(
+        first_name="Janko",
+        last_name="Hruska",
+        email="janko.hruska@example.com",
+        phone="+421911123456",
+    ),
+    card_detail=CardDetail(
+        card_holder="Janko Hruška",
+        comfort_pay=SignedCardIdObj(signed_card_id=signed_cid)
+    )
+    ...
+)
+```
+
+
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/get-payment-intent-status"/>

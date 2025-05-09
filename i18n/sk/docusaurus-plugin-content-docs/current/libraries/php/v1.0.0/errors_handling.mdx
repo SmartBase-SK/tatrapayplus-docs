@@ -1,0 +1,47 @@
+
+# Riešenie chýb
+
+Pri použití `TatraPayPlusAPIApi` sú všetky požiadavky API obalené internou logikou spracovania chýb. Ak API vráti chybu, vyvolá sa vlastná výnimka **`TatrapayPlusApiException`**. To vám umožňuje zachytiť a reagovať na zlyhania štruktúrovaným spôsobom.
+
+## Základné použitie
+
+Zabaľte všetky volania klienta do bloku `try/catch` na zachytenie a spracovanie výnimky `ApiException`.
+
+```php
+use Tatrapayplus\TatrapayplusApiClient\ApiException;
+
+try {
+    $tatrapayplus_api->getAvailableMethods();
+} catch (ApiException $e) {
+    sprintf('Fetching methods failed: %s', $e);
+    // Handle error
+}
+```
+## Podrobnosti o chybe
+
+Keď sa vyvolá chyba `Tatrapayplus\TatrapayplusApiClient\ApiException`, zachytená výnimka obsahuje viac informácií o danej chybe.
+
+```php
+use Tatrapayplus\TatrapayplusApiClient\ApiException;
+
+try {
+    $tatrapayplus_api->getAvailableMethods();
+} catch (ApiException $e) {
+    $e->getResponseBody(); // Telo HTTP odpovede servera buď ako Json alebo reťazec
+    $e->getResponseHeaders(); // Hlavička HTTP odpovede
+    $e->getRequestBody(); // Telo HTTP požiadavky spôsobujúce danú výnimku
+    $e->getResponseObject(); // deserializovaný objekt odpovede typu \Tatrapayplus\TatrapayplusApiClient\Model\Model400ErrorBody
+}
+```
+
+## InvalidArgumentException
+
+Keď sa vyvolá výnimka `InvalidArgumentException`, príslušná metóda API bola volaná s nesprávnymi parametrami.\
+Chybové hlásenie obsahuje relevantné informácie o chýbajúcom parametri a operácii, ktorá zlyhala.
+
+```php
+$payment_id = null;
+
+// throws InvalidArgumentException: Missing the required parameter $payment_id when calling cancelPaymentIntent
+$tatrapayplus_api->cancelPaymentIntent($payment_id);
+```

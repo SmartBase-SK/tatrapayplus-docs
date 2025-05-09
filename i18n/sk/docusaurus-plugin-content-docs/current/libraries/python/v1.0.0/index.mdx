@@ -1,0 +1,26 @@
+# Úvod
+
+Aby ste mohli používať a testovať platobnú bránu, potrebujete **Client ID** a **Client secret** z [TB developer portálu](https://developer.tatrabanka.sk/).
+
+# Inštalácia
+```python
+pip install tatrapayplus-python
+```
+# Vytvorenie API klienta
+
+Pre prácu s API potrebujete inicializovať `TBPlusSDK` s nasledovnými parametrami:
+
+```python
+from tatrapayplus import TBPlusSDK
+from tatrapayplus.enums import Mode
+
+client = TBPlusSDK(
+    "your-client-id",                                  # Client ID
+    "your-client-secret",                              # Client secret
+    mode=Mode.SANDBOX,                                 # SANDBOX alebo PRODUCTION
+)
+```
+
+API podporuje 2 módy:
+- `SANDBOX (default)`: dopyty budú posielané do SANDBOX (testovacieho) prostredia brány
+- `PRODUCTION`: dopyty budú posielané do PRODUCTION (produkčného) prostredia brány

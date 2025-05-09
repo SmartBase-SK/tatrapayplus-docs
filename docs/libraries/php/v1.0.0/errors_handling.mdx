@@ -1,0 +1,47 @@
+
+# Handling errors
+
+When using the `TatraPayPlusAPIApi`, all API requests are wrapped with internal error handling logic. If the API returns an error, a custom **`Tatrapayplus\TatrapayplusApiClient\ApiException`** is raised. This allows you to catch and respond to failures.
+
+## Basic usage
+
+Wrap all client calls in a `try/catch` block to catch and handle `ApiException`.
+
+```php
+use Tatrapayplus\TatrapayplusApiClient\ApiException;
+
+try {
+    $tatrapayplus_api->getAvailableMethods();
+} catch (ApiException $e) {
+    sprintf('Fetching methods failed: %s', $e);
+    // Handle error
+}
+```
+## Error details
+
+When `Tatrapayplus\TatrapayplusApiClient\ApiException` is raised, caught exception contains more information about given error.
+
+```php
+use Tatrapayplus\TatrapayplusApiClient\ApiException;
+
+try {
+    $tatrapayplus_api->getAvailableMethods();
+} catch (ApiException $e) {
+    $e->getResponseBody(); // HTTP body of the server response either as Json or string
+    $e->getResponseHeaders(); // HTTP response header
+    $e->getRequestBody(); // HTTP request body causing given exception
+    $e->getResponseObject(); // deserialized response object of type \Tatrapayplus\TatrapayplusApiClient\Model\Model400ErrorBody
+}
+```
+
+## InvalidArgumentException
+
+When `InvalidArgumentException` is raised, corresponding API method was called with incorrect parameters.\
+Error message contains relevant information about missing parameter and attempted operation.
+
+```php
+$payment_id = null;
+
+// throws InvalidArgumentException: Missing the required parameter $payment_id when calling cancelPaymentIntent
+$tatrapayplus_api->cancelPaymentIntent($payment_id);
+```

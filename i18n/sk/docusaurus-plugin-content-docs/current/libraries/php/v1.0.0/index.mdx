@@ -1,0 +1,23 @@
+# Úvod
+
+Aby ste mohli používať a testovať platobnú bránu, potrebujete **Client ID** a **Client secret** z [TB developer portálu](https://developer.tatrabanka.sk/).
+
+# Inštalácia
+
+🚧 WIP 🚧
+
+# Vytvorenie API klienta
+
+Pre prácu s API potrebujete inicializovať TatraPayPlusAPIApi s nasledovnými parametrami:
+
+```php
+$tatrapayplus_api = new TatraPayPlusAPIApi(
+    "your-client-id",
+    "your-client-secret",
+    mode: TatraPayPlusAPIApi::SANDBOX
+);
+```
+
+API podporuje 2 módy:
+- `SANDBOX (default)`: dopyty budú posielané do SANDBOX (testovacieho) prostredia brány
+- `PRODUCTION`: dopyty budú posielané do PRODUCTION (produkčného) prostredia brány

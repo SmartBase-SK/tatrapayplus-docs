@@ -4,7 +4,7 @@ import createPayment from '!!raw-loader!@site/code_samples/python/v1.0.0/create_
 
 # Create Payment
 
-To create a payment using the Python SDK, call the `TatrapayPlusClient.create_payment()` method.
+To create a payment using the Python SDK, call the `TBPlusSDK.create_payment()` method.
 
 <details>
   <summary>Click to see example for all payment methods</summary>
@@ -54,7 +54,7 @@ client.create_payment(
 
 ### Redirect URI
 
-Redirect URI is used as return address after customer finish payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/python/v1.0.0/process_payment).
+Redirect URI is used as return address after customer finishes payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/python/v1.0.0/process_payment).
 
 If your application serves multiple locales with distinct URIs for example:
 - https://example.com for one locale
@@ -72,7 +72,7 @@ This URI must exactly match the URI defined in the [Developer Portal](https://de
 
 ### Bank transfer and QR pay
 
-For this payment method you need to define attribute `bank_transfer`. **It can be empty** or contains additional information.
+For this payment method you need to define attribute `bank_transfer`. **It can be empty** or contain additional information.
 If you omit this attribute, bank transfer wouldn't be shown.
 
 ```python
@@ -80,8 +80,8 @@ bank_transfer \=BankTransfer(remittance_information_unstructured: "Additional in
 ```
 ### Card pay
 
-This payment methods requires `card_detail.card_holder`, `user_data.first_name` and `user_data.last_name`.
-One of `user_data.email` or `user_data.phone` is required, based on these data are send notifications to customers.
+This payment method requires `card_detail.card_holder`, `user_data.first_name` and `user_data.last_name`.
+One of `user_data.email` or `user_data.phone` is required, notifications to customers will be sent based on these.
 
 :::tip
 
@@ -144,7 +144,7 @@ pay_later = PayLater(
 
 ## Response
 
-After you create reqeust to initiate payment you receive InitiatePaymentResponse with following data:
+After you create request to initiate payment you receive InitiatePaymentResponse with following data:
 ```python
 InitiatePaymentResponse(
     payment_id='d7ec77c6-39d8-4011-a462-1a0f1b23f65f',
@@ -164,5 +164,5 @@ InitiatePaymentResponse(
 You should save `payment_id` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/python/v1.0.0/process_payment).
 Then you have two options of displaying payment gateway:
 1. Simply redirect user to gateway, field `tatra_pay_plus_url`.
-2. Show payme
+2. Show payment gateway in iframe. For detailed description how to use iframe please visit [Developer portal documentation](https://developer.tatrabanka.sk/apihub/#/apis/f438e906-7845-4bc1-a028-73d3f9547d2a/show/doc?mode=view&uri=iFrame-podpora)
 <Button label="See full API reference" link="/docs/api/initiate-payment"/>

@@ -1,0 +1,107 @@
+# Zapamätanie karty (ComfortPay)
+
+ComfortPay je samostatná služba, ktorá umožňuje zapamätať si kreditnú kartu používateľa pre budúce použitie.
+
+:::warning
+
+Ak chcete túto funkciu používať, **musíte na ňu spĺňať podmienky**. Pre viac informácií kontaktujte podporu Tatrabanky.
+
+:::
+
+## Registrácia pre uloženie karty
+
+Pre uloženie údajov o kreditnej karte používateľa je potrebné vykonať jednu platbu a zadať parameter `card_detail.comfort_pay`.
+
+```javascript
+const { data, error } = await sdk.createPayment(
+  {
+    userData: {
+      firstName: "Jozko",
+      lastName: "Hruska",
+      phone: "+421911123456",
+    },
+    cardDetail: {
+      cardHolder: "Jozko Hruska",
+      // highlight-start
+      comfortPay: {
+        registerForComfortPay: true
+      }
+      // highlight-end
+    },
+    basePayment: {
+      endToEnd: "/VS0123456789/SS0123456789/KS123456",
+      instructedAmount: {
+        amountValue: 10000,
+        currency: "EUR",
+      },
+    },
+  },
+  REDIRECT_URI,
+);
+```
+
+## Získanie a uloženie tokenu karty
+
+Po úspešnej platbe s `cardDetail.comfortPay.registerForComfortPay=true` dostanete údaje o zákazníckej karte v premennej `savedCard`.
+
+```javascript
+const paymentId = req.query.paymentId; // based on your server
+const {simpleStatus, savedCard, data, error} = await sdk.getPaymentStatus(paymentId);
+// savedCard == {
+//   cid: "123456789",
+//   maskedCardNumber: "440577******5558",
+//   creditCard: {
+//     niceType: "Visa",
+//     type: "visa",
+//     patterns: [4],
+//     gaps: [4, 8, 12],
+//     lengths: [16, 18, 19],
+//     code: { name: "CVV", size: 3 },
+//     matchStrength: 1,
+//   },
+// }
+```
+
+| Premenná         | Popis                                                                                                                            |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| cid              | Tento token by mal byť uložený pre účet zákazníka.                                                                      |
+| maskedCardNumber | Môže byť zobrazené používateľovi, aby si mohol vybrať z uložených kariet                                                                        |
+| creditCard       | Údaje podľa `maskedCardNumber` vytvorené v [credit-card-type knižnici](https://www.npmjs.com/package/credit-card-type) |
+
+## Použitie uloženého tokenu
+
+Po uložení tokenu `cid` pre zákazníka by ste mali zákazníkovi zobraziť uložené karty na vašej webovej stránke. Keď si používateľ vyberie jednu z uložených kariet, musíte odovzdať `cid` funkcii `generateSignedCardIdFromCid` a výsledok tejto funkcie je možné odovzdať do `comfortPay.signedCardId`.
+
+```javascript
+// highlight-start
+const cidFromPersistentStorage = db.customer.get('cid');
+const signedCardId = sdk.generateSignedCardIdFromCid(cidFromPersistentStorage);
+// highlight-end
+const { data, error } = await sdk.createPayment(
+  {
+    userData: {
+      firstName: "Jozko",
+      lastName: "Hruska",
+      phone: "+421911123456",
+    },
+    cardDetail: {
+      cardHolder: "Jozko Hruska",
+      // highlight-start
+      comfortPay: {
+        signedCardId: signedCardId
+      }
+      // highlight-end
+    },
+    basePayment: {
+      endToEnd: "/VS0123456789/SS0123456789/KS123456",
+      instructedAmount: {
+        amountValue: 10000,
+        currency: "EUR",
+      },
+    },
+  },
+  REDIRECT_URI,
+);
+```
+
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/get-payment-intent-status"/>

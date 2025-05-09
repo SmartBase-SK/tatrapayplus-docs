@@ -115,7 +115,7 @@ const config = {
                 href: "/docs/libraries/python/v1.0.0/",
               },
               {
-                label: "PHP(WIP)",
+                label: "PHP",
                 href: "/docs/libraries/php/v1.0.0/",
               },
             ],
@@ -165,6 +165,7 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['php'],
       },
       algolia: {
         appId: "B6QCVQHQ3K",

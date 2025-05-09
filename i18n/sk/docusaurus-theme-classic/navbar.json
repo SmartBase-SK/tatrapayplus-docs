@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "tatrapay+",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "tatrapay+ Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.SDK": {
+    "message": "SDK",
+    "description": "Navbar item with label SDK"
+  },
+  "item.label.API Reference": {
+    "message": "API príručka",
+    "description": "Navbar item with label API Reference"
+  },
+  "item.label.Node.js": {
+    "message": "Node.js",
+    "description": "Navbar item with label Node.js"
+  },
+  "item.label.Python": {
+    "message": "Python",
+    "description": "Navbar item with label Python"
+  },
+  "item.label.PHP": {
+    "message": "PHP",
+    "description": "Navbar item with label PHP"
+  }
+}

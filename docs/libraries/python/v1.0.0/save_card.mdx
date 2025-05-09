@@ -47,7 +47,7 @@ response = client.get_payment_status(payment_id)
 
 ## Use saved token
 
-After you saved `cid` token to customer. You should show customer saved cards in your website. When user select some of the saved card you need to pass `cid` to `generate_signed_card_id_from_cid` and result of this function can be passed to `comfort_pay.SignedCardIdObj()`.
+After you saved `cid` token to customer. You should show customer saved cards on your website. When user selects one of the saved cards, you need to pass `cid` to `generate_signed_card_id_from_cid` and result of this function can be passed to `comfort_pay.SignedCardIdObj()`.
 
 ```python
 cid = customer.cid  # cid taken from stored customer

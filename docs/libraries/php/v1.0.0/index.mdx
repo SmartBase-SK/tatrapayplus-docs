@@ -4,4 +4,20 @@ To be able to use and test payment gateway you need to have **Client ID** and **
 
 # Installation
 
-🚧 WIP 🚧
+Na inštaláciu PHP SDK je potrebné nainštalovať knižnicu `tatrapayplus/tatrapayplus_api_client` cez composer.
+
+# Client initialization
+
+To start working with the API, you need to initialize the TatraPayPlusAPIApi with the following parameters:
+
+```php
+$tatrapayplus_api = new TatraPayPlusAPIApi(
+    "your-client-id",
+    "your-client-secret",
+    mode: TatraPayPlusAPIApi::SANDBOX
+);
+```
+
+There are 2 supported modes:
+- `SANDBOX (default)`: requests will be sent to SANDBOX (test) environment of gateway
+- `PRODUCTION`: requests will be sent to PRODUCTION (live) environment of gateway

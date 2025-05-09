@@ -1,0 +1,34 @@
+import CodeBlock from '@theme/CodeBlock';
+
+# Vzhľad brány
+
+Platobná brána môže mať vlastné farby a logo.
+
+![Color guide](@site/docs/assets/color_guide_en.png)
+
+:::warning
+
+Vzhľad brány je možné zmeniť iba v móde **PRODUCTION**.
+
+:::
+
+## Logo
+
+import setLogo from '!!raw-loader!@site/code_samples/node/v1.0.0/setLogo';
+
+<CodeBlock language="jsx">{setLogo}</CodeBlock>
+
+## Farby
+
+import setColors from '!!raw-loader!@site/code_samples/node/v1.0.0/setColors';
+
+<CodeBlock language="jsx">{setColors}</CodeBlock>
+
+
+:::tip
+
+Zmeny sa prejavia iba v **nových platbách**. Obnovenie stránky nestačí.
+
+:::
+
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/set-appearance"/>

@@ -34,14 +34,14 @@ try {
 }
 ```
 
-## SanitizedInvalidArgumentException
+## InvalidArgumentException
 
-Keď sa vyvolá výjimka `Tatrapayplus\TatrapayplusApiClient\Model\SanitizedInvalidArgumentException`, príslušná metóda API bola volaná s nesprávnymi parametrami.\
-Chybové hlásenie obsahuje relevantné informácie o chýbajúcom parametri a pokuse o operáciu.
+Keď sa vyvolá výnimka `InvalidArgumentException`, príslušná metóda API bola volaná s nesprávnymi parametrami.\
+Chybové hlásenie obsahuje relevantné informácie o chýbajúcom parametri a operácii, ktorá zlyhala.
 
 ```php
 $payment_id = null;
 
-// throws Tatrapayplus\TatrapayplusApiClient\Model\SanitizedInvalidArgumentException: Missing the required parameter $payment_id when calling cancelPaymentIntent
+// throws InvalidArgumentException: Missing the required parameter $payment_id when calling cancelPaymentIntent
 $tatrapayplus_api->cancelPaymentIntent($payment_id);
 ```

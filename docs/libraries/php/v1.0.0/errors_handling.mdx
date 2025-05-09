@@ -34,14 +34,14 @@ try {
 }
 ```
 
-## SanitizedInvalidArgumentException
+## InvalidArgumentException
 
-When `Tatrapayplus\TatrapayplusApiClient\Model\SanitizedInvalidArgumentException` is raised, corresponding API method was called with incorrect parameters.\
+When `InvalidArgumentException` is raised, corresponding API method was called with incorrect parameters.\
 Error message contains relevant information about missing parameter and attempted operation.
 
 ```php
 $payment_id = null;
 
-// throws Tatrapayplus\TatrapayplusApiClient\Model\SanitizedInvalidArgumentException: Missing the required parameter $payment_id when calling cancelPaymentIntent
+// throws InvalidArgumentException: Missing the required parameter $payment_id when calling cancelPaymentIntent
 $tatrapayplus_api->cancelPaymentIntent($payment_id);
 ```

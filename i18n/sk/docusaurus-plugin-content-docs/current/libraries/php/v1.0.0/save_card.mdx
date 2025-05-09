@@ -39,7 +39,7 @@ Po úspešnej platbe s `card_detail.comfort_pay = RegisterForComfortPayObj(["reg
 
 ```php
 $payment_id = 'b54afd37-5bb9-4080-9416-5ec450779087'; // Retrieved from initiatePayment
-$response = $tatrapayplus_api->getPaymentIntentStatus($payment_id);
+$[$simple_status, $response] = $tatrapayplus_api->getPaymentIntentStatus($payment_id);
 
 $status_obj = $response["object"]->getStatus();
 

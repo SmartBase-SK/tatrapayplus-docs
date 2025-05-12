@@ -37,7 +37,7 @@ https://theredirecturl.com/redirect?paymentId=e43f85a2-b21f-4ec2-b0a1-0e449d6972
 
 Na základe prijatých parametrov GET by ste mali získať stav platby nasledovne:
 
-import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v1.0.0/get_payment_status.php';
+import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v2.0.0/get_payment_status.php';
 
 <CodeBlock language="php">{getPaymentStatus}</CodeBlock>
 
@@ -47,7 +47,7 @@ Vaša implementácia by mala vykonať príslušné akcie na základe hodnoty `si
 `$response['object']` typu `PaymentIntentStatusResponse` obsahuje všetky informácie na základe štruktúry opísanej v [API príručke](/docs/api/get-payment-intent-status).
 
 Odpoveď obsahuje aj uložené informácie o karte (ak sa zákazník rozhodne uložiť údaje o svojej karte).
-Viac podrobností o tejto funkcii nájdete [💳 tu 💳](/docs/libraries/php/v1.0.0/save_card).
+Viac podrobností o tejto funkcii nájdete [💳 tu 💳](/docs/libraries/php/v2.0.0/save_card).
 
 ## Periodická úloha
 

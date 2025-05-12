@@ -9,7 +9,7 @@ import createPaymentPreAuthorization from '!!raw-loader!@site/code_samples/pytho
 
 <CodeBlock language="python">{createPaymentPreAuthorization}</CodeBlock>
 
-V prípade platby prostredníctvom predautorizácie je obchodník povinný zabezpečiť ukončenie/zrušenie predautorizácie **zavolaním na online rozhranie do 7 dní** od dátumu, kedy bola predautorizácia vykonaná.
+V prípade platby prostredníctvom predautorizácie je obchodník povinný zabezpečiť ukončenie/zrušenie predautorizácie **zavolaním na online rozhranie do 7 dní** od dátumu, kedy bola predautorizácia vykonaná.\
 Ak obchodník vykoná transakciu predautorizácie za účelom [registrácie karty pre ComfortPay](/docs/libraries/python/v1.0.0/save_card), transakcia nebude zúčtovaná a bude držiteľovi karty uvoľnená bankou držiteľa karty v priebehu niekoľkých dní.
 Neodporúčame vykonávať následné storno tohto typu transakcie. Je to z dôvodu, že autorizačná správa obsahuje všetky informácie pre budúcu opakovanú platbu.
 Existuje riziko, že banka zákazníka si tieto informácie v rámci zrušenia transakcie neuchová.

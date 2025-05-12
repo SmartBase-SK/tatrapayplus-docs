@@ -47,7 +47,7 @@ export default function Home() {
           <Link href={'/docs/libraries/python/v1.0.0'} className="platforms__item">
               <PythonSvg></PythonSvg>
           </Link>
-          <Link href={'/docs/libraries/php/v1.0.0'} className="platforms__item">
+          <Link href={'/docs/libraries/php/v2.0.0'} className="platforms__item">
               <PhpSvg></PhpSvg>
           </Link>
       </div>

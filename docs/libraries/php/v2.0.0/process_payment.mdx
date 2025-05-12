@@ -37,7 +37,7 @@ https://theredirecturl.com/redirect?paymentId=e43f85a2-b21f-4ec2-b0a1-0e449d6972
 
 Based on received GET params you should retrieve status of payment as following:
 
-import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v1.0.0/get_payment_status.php';
+import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v2.0.0/get_payment_status.php';
 
 <CodeBlock language="php">{getPaymentStatus}</CodeBlock>
 
@@ -47,7 +47,7 @@ Your implementation should take the appropriate action based on the value of `si
 `$response['object']` of type `PaymentIntentStatusResponse` contains all the information based on structure described in [API reference](/docs/api/get-payment-intent-status).
 
 The response also includes saved card information (if the customer chooses to save their card details).
-More details on this feature can be found [💳 here 💳](/docs/libraries/php/v1.0.0/save_card).
+More details on this feature can be found [💳 here 💳](/docs/libraries/php/v2.0.0/save_card).
 
 ## Periodical task
 

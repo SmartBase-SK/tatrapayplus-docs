@@ -1,4 +1,4 @@
-from tatrapayplus import TBPlusSDK
+from tatrapayplus.client import TBPlusSDK
 from tatrapayplus.models import *
 
 client = TBPlusSDK(
@@ -8,8 +8,8 @@ client = TBPlusSDK(
 
 appearance_data = AppearanceRequest(
     theme=AppearanceRequestTheme.SYSTEM,
-    surface_accent=ColorAttribute(color_dark_mode="#ff0000", color_light_mode="#ff0000"),
-    tint_accent=ColorAttribute(color_dark_mode="#00ff00 ", color_light_mode="#00ff00"),
-    tint_on_accent=ColorAttribute(color_dark_mode="#0000ff", color_light_mode="#0000ff"),
+    surface_accent=ColorAttribute(color_dark_mode="#fff", color_light_mode="#fff"),
+    tint_accent=ColorAttribute(color_dark_mode="#fff", color_light_mode="#fff"),
+    tint_on_accent=ColorAttribute(color_dark_mode="#fff", color_light_mode="#fff"),
 )
 response = client.set_appearance(appearance_data)

@@ -99,7 +99,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/create_payment.php"
+                            "$ref": "./code_samples/php/v2.0.0/create_payment.php"
                         }
                     }
                 ]
@@ -179,7 +179,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/get_available_payment_methods.php"
+                            "$ref": "./code_samples/php/v2.0.0/get_available_payment_methods.php"
                         }
                     }
                 ]
@@ -262,7 +262,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/get_payment_status.php"
+                            "$ref": "./code_samples/php/v2.0.0/get_payment_status.php"
                         }
                     }
                 ]
@@ -351,7 +351,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/chargeback.php"
+                            "$ref": "./code_samples/php/v2.0.0/chargeback.php"
                         }
                     }
                 ]
@@ -431,7 +431,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/cancel_payment.php"
+                            "$ref": "./code_samples/php/v2.0.0/cancel_payment.php"
                         }
                     }
                 ]
@@ -519,7 +519,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/create_payment_direct.php"
+                            "$ref": "./code_samples/php/v2.0.0/create_payment_direct.php"
                         }
                     }
                 ]
@@ -601,7 +601,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/set_colors.php"
+                            "$ref": "./code_samples/php/v2.0.0/set_colors.php"
                         }
                     }
                 ]
@@ -683,7 +683,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/set_logo.php"
+                            "$ref": "./code_samples/php/v2.0.0/set_logo.php"
                         }
                     }
                 ]
@@ -727,7 +727,7 @@
                         "lang": "PHP",
                         "label": "SDK",
                         "source": {
-                            "$ref": "./code_samples/php/v1.0.0/get_access_token.php"
+                            "$ref": "./code_samples/php/v2.0.0/get_access_token.php"
                         }
                     }
                 ]

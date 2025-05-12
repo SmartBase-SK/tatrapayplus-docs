@@ -1,6 +1,6 @@
 import Button from '@site/src/components/Button';
 import CodeBlock from '@theme/CodeBlock';
-import createPayment from '!!raw-loader!@site/code_samples/php/v1.0.0/create_payment.php';
+import createPayment from '!!raw-loader!@site/code_samples/php/v2.0.0/create_payment.php';
 
 # Create Payment
 
@@ -55,7 +55,7 @@ $response = $tatrapayplus_api->initiatePayment(
 
 ### Redirect URI
 
-Redirect URI is used as return address after customer finishes payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/php/v1.0.0/process_payment).
+Redirect URI is used as return address after customer finishes payment. This URI is necessary and is used to [process result of the payment](/docs/libraries/php/v2.0.0/process_payment).
 
 If your application serves multiple locales with distinct URIs for example:
 - https://example.com for one locale
@@ -168,7 +168,7 @@ $payment_id = $response_obj->getPaymentId();
 $tatra_pay_plus_url = $response_obj->getTatraPayPlusUrl();
 ```
 
-You should save `$payment_id` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/php/v1.0.0/process_payment).
+You should save `$payment_id` to your order associated with this payment. You will later need it to [retrieve status of payment](/docs/libraries/php/v2.0.0/process_payment).
 Then you have two options of displaying payment gateway:
 1. Simply redirect user to gateway, field `$tatra_pay_plus_url`.
 2. Show payme

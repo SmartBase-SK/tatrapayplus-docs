@@ -4,13 +4,31 @@ Aby ste mohli používať a testovať platobnú bránu, potrebujete **Client ID*
 
 # Inštalácia
 
-Na inštaláciu PHP SDK je potrebné nainštalovať knižnicu `tatrapayplus/tatrapayplus_api_client` cez composer.
+Na inštaláciu PHP SDK je potrebné nainštalovať `tatrapayplus/tatrapayplus_api_client` cez composer.\
+Do súboru `composer.json` pre váš projekt pridajte novú požiadavku:
+
+```json
+{
+    "name": "nazov projektu",
+    // ...
+    "require": {
+        // ...
+        "tatrapayplus/tatrapayplus_api_client": "2.0.0"
+    },
+    // ...
+}
+```
+
+Následne spustite príkaz `composer install` pre inštaláciu balíka.
 
 # Vytvorenie API klienta
 
 Pre prácu s API potrebujete inicializovať TatraPayPlusAPIApi s nasledovnými parametrami:
 
 ```php
+<?php
+use Tatrapayplus\TatrapayplusApiClient\Api\TatraPayPlusAPIApi;
+
 $tatrapayplus_api = new TatraPayPlusAPIApi(
     "your-client-id",
     "your-client-secret",

@@ -4,13 +4,31 @@ To be able to use and test payment gateway you need to have **Client ID** and **
 
 # Installation
 
-To install PHP SDK, you need to install `tatrapayplus/tatrapayplus_api_client` library via composer.
+To install PHP SDK, you need to install `tatrapayplus/tatrapayplus_api_client` library via composer.\
+Inside your `composer.json` file for your project, add new requirement:
+
+```json
+{
+    "name": "project name",
+    // ...
+    "require": {
+        // ...
+        "tatrapayplus/tatrapayplus_api_client": "2.0.0"
+    },
+    // ...
+}
+```
+
+Afterwards, run command `composer install` to install new dependency.
 
 # Client initialization
 
 To start working with the API, you need to initialize the TatraPayPlusAPIApi with the following parameters:
 
 ```php
+<?php
+use Tatrapayplus\TatrapayplusApiClient\Api\TatraPayPlusAPIApi;
+
 $tatrapayplus_api = new TatraPayPlusAPIApi(
     "your-client-id",
     "your-client-secret",

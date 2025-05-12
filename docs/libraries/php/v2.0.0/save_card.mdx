@@ -19,9 +19,7 @@ $initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\Initiat
             "amount_value" => 10.0,
             "currency" => "EUR",
         ]),
-        "end_to_end" => new Tatrapayplus\TatrapayplusApiClient\Model\E2e([
-            "variable_symbol" => "ORDER123456",
-        ]),
+        "end_to_end" => "ORDER123456",
     ]),
     "card_detail" => new Tatrapayplus\TatrapayplusApiClient\Model\CardDetail([
         "card_holder" => "Janko Hrasko",
@@ -71,9 +69,7 @@ $initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\Initiat
             "amount_value" => 10.0,
             "currency" => "EUR",
         ]),
-        "end_to_end" => new Tatrapayplus\TatrapayplusApiClient\Model\E2e([
-            "variable_symbol" => "ORDER123456",
-        ]),
+        "end_to_end" => "ORDER123456",
     ]),
     "user_data" => new Tatrapayplus\TatrapayplusApiClient\Model\UserData([
         "first_name" => "Janko",

@@ -19,9 +19,7 @@ $initiate_payment_request = new Tatrapayplus\TatrapayplusApiClient\Model\Initiat
             "amount_value" => 10.0,
             "currency" => "EUR",
         ]),
-        "end_to_end" => new Tatrapayplus\TatrapayplusApiClient\Model\E2e([
-            "variable_symbol" => "ORDER123456",
-        ]),
+        "end_to_end" => "ORDER123456",
     ]),
     "bank_transfer" => new Tatrapayplus\TatrapayplusApiClient\Model\BankTransfer(),
     "user_data" => new Tatrapayplus\TatrapayplusApiClient\Model\UserData([

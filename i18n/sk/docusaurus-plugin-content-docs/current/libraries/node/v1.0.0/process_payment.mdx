@@ -41,14 +41,21 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/node/v1.0.0/getPay
 
 <CodeBlock language="jsx">{getPaymentStatus}</CodeBlock>
 
-Výsledok obsahuje atribút `simple_status`, ktorý môže mať jednu z troch hodnôt: `CAPTURE`, `AUTHORIZED` alebo `REJECTED`.
-| Platobná metóda| CAPTURE                                   | REJECTED             | AUTHORIZED           |
-|----------------|-------------------------------------------|----------------------|----------------------|
-| QR_PAY         | ACSC, ACCC                                | CANC, RJCT           |                      |
-| BANK_TRANSFER  | ACSC, ACCC                                | CANC, RJCT           |                      |
+Výsledok obsahuje atribút `simpleStatus`, ktorý zjednodušuje stav platby na jeden zo štyroch nasledovných stavov:
+- **AUTHORIZED**
+- **CAPTURE**
+- **REJECTED**
+- **PENDING**
+
+Hodnota `simpleStatus` sa určuje podľa nasledujúcej tabuľky. Ak žiadna z podmienok nevyhovuje, predvolená hodnota je `PENDING`.
+
+| Payment Method | CAPTURE                      | REJECTED   | AUTHORIZED |
+|----------------|-----------------------------------------|----------------------|----------------------|
+| QR_PAY         | ACCC                              | CANC, RJCT           |                      |
+| BANK_TRANSFER  | ACSC, ACCC                              | CANC, RJCT           |                      |
 | PAY_LATER      | LOAN_APPLICATION_FINISHED, LOAN_DISBURSED | CANCELED, EXPIRED    |                      |
-| CARD_PAY       | OK, CB                                    | FAIL                 | PA                   |
-| DIRECT_API     | OK, CB                                    | FAIL                 |                      |
+| CARD_PAY       | OK, CB                                  | FAIL                 | PA                   |
+| DIRECT_API     | OK, CB                                  | FAIL                 |                      |
 
 Vaša implementácia by mala vykonať príslušné akcie na základe hodnoty `simple_status`.
 

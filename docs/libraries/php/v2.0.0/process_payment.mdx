@@ -41,8 +41,21 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v2.0.0/get_pay
 
 <CodeBlock language="php">{getPaymentStatus}</CodeBlock>
 
-`simple_status` return value can have one of three values: `ACCEPTED`, `PENDING`, or `REJECTED`.\
-Your implementation should take the appropriate action based on the value of `simple_status`.
+The result includes a `simpleStatus` attribute, which simplifies the status of a payment into one of the following four values:
+- **AUTHORIZED**
+- **CAPTURE**
+- **REJECTED**
+- **PENDING**
+
+The simpleStatus is determined according to the table below. If none of the conditions match, the status defaults to `PENDING`.
+
+| Payment Method | CAPTURE                      | REJECTED   | AUTHORIZED |
+|----------------|-----------------------------------------|----------------------|----------------------|
+| QR_PAY         | ACCC                              | CANC, RJCT           |                      |
+| BANK_TRANSFER  | ACSC, ACCC                              | CANC, RJCT           |                      |
+| PAY_LATER      | LOAN_APPLICATION_FINISHED, LOAN_DISBURSED | CANCELED, EXPIRED    |                      |
+| CARD_PAY       | OK, CB                                  | FAIL                 | PA                   |
+| DIRECT_API     | OK, CB                                  | FAIL                 |                      |
 
 `$response['object']` of type `PaymentIntentStatusResponse` contains all the information based on structure described in [API reference](/docs/api/get-payment-intent-status).
 

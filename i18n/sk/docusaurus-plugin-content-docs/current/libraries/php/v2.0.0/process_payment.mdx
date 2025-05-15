@@ -41,8 +41,21 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v2.0.0/get_pay
 
 <CodeBlock language="php">{getPaymentStatus}</CodeBlock>
 
-Návratová hodnota `simple_status` môže mať jednu z troch hodnôt: `CAPTURE`, `AUTHORIZED` alebo `REJECTED`.\
-Vaša implementácia by mala vykonať príslušné akcie na základe hodnoty `simple_status`.
+Výsledok obsahuje atribút `simpleStatus`, ktorý zjednodušuje stav platby na jeden zo štyroch nasledovných stavov:
+- **AUTHORIZED**
+- **CAPTURE**
+- **REJECTED**
+- **PENDING**
+
+Hodnota `simpleStatus` sa určuje podľa nasledujúcej tabuľky. Ak žiadna z podmienok nevyhovuje, predvolená hodnota je `PENDING`.
+
+| Payment Method | CAPTURE                      | REJECTED   | AUTHORIZED |
+|----------------|-----------------------------------------|----------------------|----------------------|
+| QR_PAY         | ACCC                              | CANC, RJCT           |                      |
+| BANK_TRANSFER  | ACSC, ACCC                              | CANC, RJCT           |                      |
+| PAY_LATER      | LOAN_APPLICATION_FINISHED, LOAN_DISBURSED | CANCELED, EXPIRED    |                      |
+| CARD_PAY       | OK, CB                                  | FAIL                 | PA                   |
+| DIRECT_API     | OK, CB                                  | FAIL                 |                      |
 
 `$response['object']` typu `PaymentIntentStatusResponse` obsahuje všetky informácie na základe štruktúry opísanej v [API príručke](/docs/api/get-payment-intent-status).
 

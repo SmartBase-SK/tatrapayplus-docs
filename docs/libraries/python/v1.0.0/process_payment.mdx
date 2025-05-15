@@ -41,10 +41,17 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/python/v1.0.0/get_
 
 <CodeBlock language="python">{getPaymentStatus}</CodeBlock>
 
-Result includes a `simple_status` attribute that can have one of three values: `CAPTURE`, `AUTHORIZED`, or `REJECTED`.
+The result includes a `simpleStatus` attribute, which simplifies the status of a payment into one of the following four values:
+- **AUTHORIZED**
+- **CAPTURE**
+- **REJECTED**
+- **PENDING**
+
+The simpleStatus is determined according to the table below. If none of the conditions match, the status defaults to `PENDING`.
+
 | Payment Method | CAPTURE                      | REJECTED   | AUTHORIZED |
 |----------------|-----------------------------------------|----------------------|----------------------|
-| QR_PAY         | ACSC, ACCC                              | CANC, RJCT           |                      |
+| QR_PAY         | ACCC                              | CANC, RJCT           |                      |
 | BANK_TRANSFER  | ACSC, ACCC                              | CANC, RJCT           |                      |
 | PAY_LATER      | LOAN_APPLICATION_FINISHED, LOAN_DISBURSED | CANCELED, EXPIRED    |                      |
 | CARD_PAY       | OK, CB                                  | FAIL                 | PA                   |

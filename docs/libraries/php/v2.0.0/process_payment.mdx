@@ -41,6 +41,11 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/php/v2.0.0/get_pay
 
 <CodeBlock language="php">{getPaymentStatus}</CodeBlock>
 
+:::info
+- In **sandbox** mode, the payment status changes from `PENDING` to the target status after a short delay (usually 2–5 minutes).
+- In **production** mode, the payment status is usually already updated to the final status by the time the user is redirected. However, in some cases, it may still be `PENDING` for a short time due to processing delays.
+:::
+
 The result includes a `simpleStatus` attribute, which simplifies the status of a payment into one of the following four values:
 - **AUTHORIZED**
 - **CAPTURE**

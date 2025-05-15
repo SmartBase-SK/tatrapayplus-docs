@@ -41,6 +41,11 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/node/v1.0.0/getPay
 
 <CodeBlock language="jsx">{getPaymentStatus}</CodeBlock>
 
+:::info
+- V **sandbox** režime sa stav platby zmení z PENDING na cieľový stav po krátkom oneskorení (zvyčajne 2–5 minút).
+- V **produkčnom** režime je stav platby zvyčajne už aktualizovaný na konečný stav v čase, keď je používateľ presmerovaný. V niektorých prípadoch však môže stav stále zostať PENDING na krátky čas kvôli spracovaniu.
+:::
+
 Výsledok obsahuje atribút `simpleStatus`, ktorý zjednodušuje stav platby na jeden zo štyroch nasledovných stavov:
 - **AUTHORIZED**
 - **CAPTURE**

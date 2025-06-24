@@ -25,9 +25,7 @@ $initiate_transaction_request = new Tatrapayplus\TatrapayplusApiClient\Model\Ini
         "location" => "Test 123",
         "country" => "SK",
     ]),
-    "token" => new Tatrapayplus\TatrapayplusApiClient\Model\Token([
-        "google_pay_token" => "ABC12345"
-    ]),
+    "token" => "ABC12345",
 ]);
 
 $response = $tatrapayplus_api->initiateDirectTransaction(

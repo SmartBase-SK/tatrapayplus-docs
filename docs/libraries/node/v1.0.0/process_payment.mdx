@@ -41,11 +41,22 @@ import getPaymentStatus from '!!raw-loader!@site/code_samples/node/v1.0.0/getPay
 
 <CodeBlock language="jsx">{getPaymentStatus}</CodeBlock>
 
-Result includes a `simpleStatus` attribute that can have one of three values: `AUTHORIZED`, `CAPTURE` or `REJECTED`.
+:::info
+- In **sandbox** mode, the payment status changes from `PENDING` to the target status after a short delay (usually 2–5 minutes).
+- In **production** mode, the payment status is usually already updated to the final status by the time the user is redirected. However, in some cases, it may still be `PENDING` for a short time due to processing delays.
+:::
+
+The result includes a `simpleStatus` attribute, which simplifies the status of a payment into one of the following four values:
+- **AUTHORIZED**
+- **CAPTURE**
+- **REJECTED**
+- **PENDING**
+
+The simpleStatus is determined according to the table below. If none of the conditions match, the status defaults to `PENDING`.
 
 | Payment Method | CAPTURE                      | REJECTED   | AUTHORIZED |
 |----------------|-----------------------------------------|----------------------|----------------------|
-| QR_PAY         | ACSC, ACCC                              | CANC, RJCT           |                      |
+| QR_PAY         | ACCC                              | CANC, RJCT           |                      |
 | BANK_TRANSFER  | ACSC, ACCC                              | CANC, RJCT           |                      |
 | PAY_LATER      | LOAN_APPLICATION_FINISHED, LOAN_DISBURSED | CANCELED, EXPIRED    |                      |
 | CARD_PAY       | OK, CB                                  | FAIL                 | PA                   |

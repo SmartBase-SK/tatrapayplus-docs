@@ -38,6 +38,7 @@ const sidebars = {
       "libraries/python/v1.0.0/google_apple_pay",
       "libraries/python/v1.0.0/cancel_payment",
       "libraries/python/v1.0.0/appearances",
+      "libraries/python/v1.0.0/loan_precalculation",
       "libraries/python/v1.0.0/logging",
       "libraries/python/v1.0.0/errors_handling",
   ],

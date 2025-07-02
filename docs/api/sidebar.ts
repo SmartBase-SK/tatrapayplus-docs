@@ -40,6 +40,12 @@ const sidebar: SidebarsConfig = {
           label: "Cancel payment intent.",
           className: "api-method delete",
         },
+        {
+          type: "doc",
+          id: "api/loan-precalculation",
+          label: "Loan precalculation",
+          className: "api-method put",
+        },
       ],
     },
     {
@@ -86,18 +92,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/create-direct-transaction-request",
           label: "Create direct transaction request",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Authentication",
-      items: [
-        {
-          type: "doc",
-          id: "api/get-access-token",
-          label: "Obtain OAuth2 Access Token",
           className: "api-method post",
         },
       ],

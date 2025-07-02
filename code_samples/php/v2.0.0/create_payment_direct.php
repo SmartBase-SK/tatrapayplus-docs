@@ -19,7 +19,7 @@ $initiate_transaction_request = new Tatrapayplus\TatrapayplusApiClient\Model\Ini
         "card_holder" => "Janko Hraško",
         "email" => "janko.hrasko@example.com",
     ]),
-    "ipsp_data" => new Tatrapayplus\TatrapayplusApiClient\Model\DirectTransactionIPSPData([
+    "ipsp_data" => new Tatrapayplus\TatrapayplusApiClient\Model\TransactionIPSPData([
         "sub_merchant_id" => "12345",
         "name" => "Test 123",
         "location" => "Test 123",

@@ -52,6 +52,7 @@ const sidebars = {
     "libraries/php/v2.0.0/google_apple_pay",
     "libraries/php/v2.0.0/cancel_payment",
     "libraries/php/v2.0.0/appearances",
+    "libraries/php/v2.0.0/loan_precalculation",
     "libraries/php/v2.0.0/logging",
     "libraries/php/v2.0.0/errors_handling",
   ],

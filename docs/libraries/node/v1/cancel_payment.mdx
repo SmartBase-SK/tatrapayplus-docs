@@ -1,0 +1,13 @@
+import CodeBlock from '@theme/CodeBlock';
+
+# Cancel payment
+
+This operation can be used with any payment method, but only if it is in `authorizationStatus=NEW`.
+
+In the case of payment method `PAY_LATER`, this method can also be used if `authorizationStatus=AUTH_DONE` and at the same time payment `status=CUSTOMER_CREATION_IN_PROGRESS`.
+
+import cancelPayment from '!!raw-loader!@site/code_samples/node/v1/cancelPayment';
+
+<CodeBlock language="jsx">{cancelPayment}</CodeBlock>
+
+<Button label="See full API reference" link="/docs/api/cancel-payment-intent"/>

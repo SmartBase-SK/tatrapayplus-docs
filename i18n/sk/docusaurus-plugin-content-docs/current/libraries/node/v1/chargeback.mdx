@@ -1,0 +1,13 @@
+import CodeBlock from '@theme/CodeBlock';
+
+# Vrátenie platby
+
+Obchodník môže vykonať úplné alebo čiastočné vrátenie platby cez CardPay.
+Vrátenie platby je možné len pri úspešných platbách vrátane dokončených predautorizácií, ako aj pri platbách, pri ktorých už bolo vrátenie vykonané, pričom výška vrátenia nesmie presiahnuť pôvodnú sumu platby (v prípade predautorizácie ide o sumu, ktorou bola predautorizácia potvrdená).
+
+
+import chargeBack from '!!raw-loader!@site/code_samples/node/v1/chargeBack';
+
+<CodeBlock language="jsx">{chargeBack}</CodeBlock>
+
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/cancel-payment-intent"/>

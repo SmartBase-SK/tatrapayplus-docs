@@ -7,21 +7,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/createPayment.js"
+                     "$ref":"./code_samples/node/v1/createPayment.js"
                   }
                },
                {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/create_payment.py"
+                     "$ref":"./code_samples/python/v1/create_payment.py"
                   }
                },
               {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/create_payment.php"
+                     "$ref":"./code_samples/php/v2/create_payment.php"
                   }
                }
             ]
@@ -34,21 +34,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/getAvailablePaymentMethods.js"
+                     "$ref":"./code_samples/node/v1/getAvailablePaymentMethods.js"
                   }
                },
                 {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/get_available_payment_methods.py"
+                     "$ref":"./code_samples/python/v1/get_available_payment_methods.py"
                   }
                },
               {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/get_available_payment_methods.php"
+                     "$ref":"./code_samples/php/v2/get_available_payment_methods.php"
                   }
                }
             ]
@@ -61,21 +61,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/getPaymentStatus.js"
+                     "$ref":"./code_samples/node/v1/getPaymentStatus.js"
                   }
                },
                {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/get_payment_status.py"
+                     "$ref":"./code_samples/python/v1/get_payment_status.py"
                   }
                },
               {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/get_payment_status.php"
+                     "$ref":"./code_samples/php/v2/get_payment_status.php"
                   }
                }
             ]
@@ -88,21 +88,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/updatePayment.js"
+                     "$ref":"./code_samples/node/v1/updatePayment.js"
                   }
                },
               {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/update_payment.py"
+                     "$ref":"./code_samples/python/v1/update_payment.py"
                   }
                },
               {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/chargeback.php"
+                     "$ref":"./code_samples/php/v2/chargeback.php"
                   }
                }
             ]
@@ -113,21 +113,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/cancelPayment.js"
+                     "$ref":"./code_samples/node/v1/cancelPayment.js"
                   }
                },
                {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/cancel_payment.py"
+                     "$ref":"./code_samples/python/v1/cancel_payment.py"
                   }
                },
                {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/cancel_payment.php"
+                     "$ref":"./code_samples/php/v2/cancel_payment.php"
                   }
                }
             ]
@@ -140,21 +140,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/createPaymentDirect.js"
+                     "$ref":"./code_samples/node/v1/createPaymentDirect.js"
                   }
                },
                {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/create_payment_direct.py"
+                     "$ref":"./code_samples/python/v1/create_payment_direct.py"
                   }
                },
                {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/create_payment_direct.php"
+                     "$ref":"./code_samples/php/v2/create_payment_direct.php"
                   }
                }
             ]
@@ -167,21 +167,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/setColors.js"
+                     "$ref":"./code_samples/node/v1/setColors.js"
                   }
                },
                {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/set_colors.py"
+                     "$ref":"./code_samples/python/v1/set_colors.py"
                   }
                },
                {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/set_colors.php"
+                     "$ref":"./code_samples/php/v2/set_colors.php"
                   }
                }
             ]
@@ -194,21 +194,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/setLogo.js"
+                     "$ref":"./code_samples/node/v1/setLogo.js"
                   }
                },
                {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/set_logo.py"
+                     "$ref":"./code_samples/python/v1/set_logo.py"
                   }
                },
                {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/set_logo.php"
+                     "$ref":"./code_samples/php/v2/set_logo.php"
                   }
                }
             ]
@@ -221,21 +221,21 @@
                   "lang":"JavaScript",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/node/v1.0.0/getAccessToken.js"
+                     "$ref":"./code_samples/node/v1/getAccessToken.js"
                   }
                },
                {
                   "lang":"Python",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/python/v1.0.0/get_access_token.py"
+                     "$ref":"./code_samples/python/v1/get_access_token.py"
                   }
                },
                {
                   "lang":"PHP",
                   "label":"SDK",
                   "source":{
-                     "$ref":"./code_samples/php/v2.0.0/get_access_token.php"
+                     "$ref":"./code_samples/php/v2/get_access_token.php"
                   }
                }
             ]

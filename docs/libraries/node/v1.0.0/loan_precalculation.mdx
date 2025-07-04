@@ -1,0 +1,17 @@
+import CodeBlock from '@theme/CodeBlock';
+
+# Loan Precalculation
+
+You can issue a request to obtain a preliminary loan offer for customers.
+
+The loan offer obtained through this service is not binding.
+
+:::warning
+Endpoint only works in PRODUCTION mode and your TB account needs to support loan payments (PAY_LATER)
+:::
+
+import loanPrecalculation from '!!raw-loader!@site/code_samples/node/v1.0.0/loanPrecalculation.js';
+
+<CodeBlock language="jsx">{loanPrecalculation}</CodeBlock>
+
+<Button label="See full API reference" link="/docs/api/loan-precalculation"/>

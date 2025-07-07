@@ -1,0 +1,18 @@
+import Button from '@site/src/components/Button';
+import CodeBlock from '@theme/CodeBlock';
+import getAvailablePaymentMethods from '!!raw-loader!@site/code_samples/python/v1/get_available_payment_methods.py';
+
+# Získanie dostupných metód
+
+V tejto platobnej bráne si zákazník vyberá spôsob platby priamo v bráne, **NIE na eshope**.
+Preto chcete zákazníka informovať o dostupných metódach, prípadne zobraziť odlišný text alebo obrázok podľa podmienok ako:
+- mena
+- suma platby
+- krajina
+
+Pre tento účel môžete získať dostupné platobné metódy nasledujúcim volaním:
+<CodeBlock language="python">{getAvailablePaymentMethods}</CodeBlock>
+
+Na základe odpovede by ste mali zákazníkovi zobraziť informácie o dostupných metódach a následne vytvoriť novú platbu.
+
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/get-methods"/>

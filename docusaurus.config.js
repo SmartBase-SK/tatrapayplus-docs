@@ -108,15 +108,15 @@ const config = {
             items: [
               {
                 label: "Node.js",
-                href: "/docs/libraries/node/v1.0.0/",
+                href: "/docs/libraries/node/v1/",
               },
               {
                 label: "Python",
-                href: "/docs/libraries/python/v1.0.0/",
+                href: "/docs/libraries/python/v1/",
               },
               {
                 label: "PHP",
-                href: "/docs/libraries/php/v2.0.0/",
+                href: "/docs/libraries/php/v2/",
               },
             ],
           },
@@ -138,7 +138,7 @@ const config = {
             items: [
               {
                 label: "Guides",
-                to: "/docs/libraries/node/v1.0.0",
+                to: "/docs/libraries/node/v1",
               },
               {
                 label: "API Reference",

@@ -1,0 +1,87 @@
+import CodeBlock from '@theme/CodeBlock';
+
+# Spracovanie platby
+
+Po dokončení operácií v službe TatraPayPlus bude používateľ presmerovaný na **URL adresu presmerovania** uvedenú pri inicializácii platby.
+
+## Parametre presmerovania
+
+### Path parametre pre presmerovanie bez technickej chyby
+
+| Path Parameter  | Typ    | Povinné          | Popis                                   |
+| --------------- | ------ | -----------------| --------------------------------------- |
+| `paymentId`     | string | Povinné          | ID platby                               |
+| `paymentMethod` | string | Povinné          | Kód zvolenej platobnej metódy           |
+
+### Path parametre pre presmerovanie v prípade technickej chyby
+
+| Path Parameter  | Typ    | Povinné   | Popis                                   |
+| --------------- | ------ | ----------| --------------------------------------- |
+| `paymentId`     | string | Povinné   | ID platby                               |
+| `error`         | string | Povinné   | Kód chyby                               |
+| `errorId`       | string | Povinné   | unikátne ID chyby                       |
+
+### Príklad
+
+Úspech ✔️
+```bash
+https://theredirecturl.com/redirect?paymentId=e43f85a2-b21f-4ec2-b0a1-0e449d6972c7&paymentMethod=CARD_PAY
+```
+
+Chyba ❌️
+```bash
+https://theredirecturl.com/redirect?paymentId=e43f85a2-b21f-4ec2-b0a1-0e449d6972c7&error=FAILED&errorId=43ca30ec-2956-454c-9d1b-4bd2befee7c8
+```
+
+## Získanie stavu platby
+
+Na základe prijatých parametrov GET by ste mali získať stav platby nasledovne:
+
+import getPaymentStatus from '!!raw-loader!@site/code_samples/python/v1/get_payment_status.py';
+
+<CodeBlock language="python">{getPaymentStatus}</CodeBlock>
+
+:::info
+- V **sandbox** režime sa stav platby zmení z PENDING na cieľový stav po krátkom oneskorení (zvyčajne 2–5 minút).
+- V **produkčnom** režime je stav platby zvyčajne už aktualizovaný na konečný stav v čase, keď je používateľ presmerovaný. V niektorých prípadoch však môže stav stále zostať PENDING na krátky čas kvôli spracovaniu.
+:::
+
+Výsledok obsahuje atribút `simpleStatus`, ktorý zjednodušuje stav platby na jeden zo štyroch nasledovných stavov:
+- **AUTHORIZED**
+- **CAPTURE**
+- **REJECTED**
+- **PENDING**
+
+Hodnota `simpleStatus` sa určuje podľa nasledujúcej tabuľky. Ak žiadna z podmienok nevyhovuje, predvolená hodnota je `PENDING`.
+
+| Payment Method | CAPTURE                      | REJECTED   | AUTHORIZED |
+|----------------|-----------------------------------------|----------------------|----------------------|
+| QR_PAY         | ACCC                              | CANC, RJCT           |                      |
+| BANK_TRANSFER  | ACSC, ACCC                              | CANC, RJCT           |                      |
+| PAY_LATER      | LOAN_APPLICATION_FINISHED, LOAN_DISBURSED | CANCELED, EXPIRED    |                      |
+| CARD_PAY       | OK, CB                                  | FAIL                 | PA                   |
+| DIRECT_API     | OK, CB                                  | FAIL                 |                      |
+
+Vaša implementácia by mala vykonať príslušné akcie na základe hodnoty `simple_status`.
+
+Atribút `data` obsahuje všetky informácie na základe štruktúry opísanej v [API príručke](/docs/api/get-payment-intent-status).
+
+Odpoveď obsahuje aj uložené informácie o karte (ak sa zákazník rozhodne uložiť údaje o svojej karte).
+Viac podrobností o tejto funkcii nájdete [💳 tu 💳](/docs/libraries/python/v1/save_card).
+
+## Periodická úloha
+
+Niektoré platby môžu byť spracované neskôr.
+Preto by ste mali pravidelne kontrolovať stav **„čakajúcich“ platieb**.
+Odporúčame nastaviť plánovanú úlohu, ktorá z vášho systému načíta všetky čakajúce platby.
+Pomocou uloženého `payment_id` s metódou `get_payment_status` môžete získať aktuálny stav a vykonať príslušné akcie vo vašom systéme.
+
+Odporúčané intervaly získania stavov na základe **veku objednávok**:
+
+| Časový rozsah         | Frekvencia dopytu   |
+|-----------------------|---------------------|
+| 1. hodina             | Každých 5 minút     |
+| 1 hodina - 24 hodín   | Každú hodinu        |
+| Po 24 hodinách        | 5-krát denne        |
+
+<Button label="Prejsť na kompletnú API príručku" link="/docs/api/get-payment-intent-status"/>

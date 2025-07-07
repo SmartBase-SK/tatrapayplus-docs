@@ -9,7 +9,7 @@
   },
   "link.item.label.Guides": {
     "message": "Návody",
-    "description": "The label of footer link with label=Guides linking to /docs/libraries/node/v1.0.0"
+    "description": "The label of footer link with label=Guides linking to /docs/libraries/node/v1"
   },
   "link.item.label.API Reference": {
     "message": "API príručka",

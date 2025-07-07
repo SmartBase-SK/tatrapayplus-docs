@@ -41,13 +41,13 @@ export default function Home() {
       <HomepageHeader />
         <h2 className={"platforms__title"}><Translate>Choose your platform</Translate></h2>
       <div className="platforms">
-          <Link href={'/docs/libraries/node/v1.0.0'} className="platforms__item">
+          <Link href={'/docs/libraries/node/v1'} className="platforms__item">
             <JsSvg></JsSvg>
           </Link>
-          <Link href={'/docs/libraries/python/v1.0.0'} className="platforms__item">
+          <Link href={'/docs/libraries/python/v1'} className="platforms__item">
               <PythonSvg></PythonSvg>
           </Link>
-          <Link href={'/docs/libraries/php/v2.0.0'} className="platforms__item">
+          <Link href={'/docs/libraries/php/v2'} className="platforms__item">
               <PhpSvg></PhpSvg>
           </Link>
       </div>

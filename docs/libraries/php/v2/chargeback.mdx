@@ -1,0 +1,13 @@
+import CodeBlock from '@theme/CodeBlock';
+
+# Chargeback
+
+The merchant can also make a full or partial return of the transaction through CardPay.
+Returns can only be made on successful payments, including completed pre-authorisations, as well as on payments on which a return has already been made, and the amount of the return must not exceed the original amount of the payment (in the case of a pre-authorisation, it is the amount with which the pre-authorisation was confirmed).
+
+
+import chargeBack from '!!raw-loader!@site/code_samples/php/v2/chargeback.php';
+
+<CodeBlock language="php">{chargeBack}</CodeBlock>
+
+<Button label="See full API reference" link="/docs/api/cancel-payment-intent"/>

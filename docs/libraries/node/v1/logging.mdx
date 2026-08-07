@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 # TBPlusLogger
 
-The `TBPlusLogger` is a simple and customizable HTTP logger for the `TBPlusSDK`.
+The `TBPlusLogger` is exported from `@tatrabanka/tatrapayplus-node` (since 1.0.2) and is a simple, customizable HTTP logger for the `TBPlusSDK`.
 It helps you debug API calls by logging outgoing requests and incoming responses, while safely masking sensitive data.
 
 ---
@@ -21,11 +21,12 @@ It helps you debug API calls by logging outgoing requests and incoming responses
 The logger masks sensitive values before outputting them:
 
 - **Headers**: `Authorization`
-- **Body fields (reqest and response)**: `client_id`, `client_secret`, `access_token`
+- **Body fields (request and response)**: `client_id`, `client_secret`, `access_token`
 
 Example masked output: `client_secret=abcde*************uvxyz`
 
-You can disable masking by passing false to the constructor:
+You can disable masking by passing `false` to the constructor:
+
 ```javascript
 const logger = new TBPlusLogger(false);
 ```
@@ -34,43 +35,32 @@ const logger = new TBPlusLogger(false);
 
 ### Step 1: Create a Logger Subclass
 
-
 ```javascript
-import { TBPlusLogger } from "./logger";
+import { TBPlusLogger } from "@tatrabanka/tatrapayplus-node";
 
 class ConsoleLogger extends TBPlusLogger {
   protected writeLine(line: string): void {
     console.log("[ConsoleLogger]", line);
   }
 }
-}
-
 ```
 
 ### Step 2: Use Logger with the SDK
 
 ```javascript
-import { TBPlusSDK } from "tbplus-sdk";
+import { TBPlusSDK, TBPlusLogger } from "@tatrabanka/tatrapayplus-node";
 
 const logger = new ConsoleLogger();
 
-const sdk = new TBPlusSDK(
-  API_KEY,
-  API_SECRET,
-  "192.0.2.123",
-  {},
-  logger
+const sdk = new TBPlusSDK(API_KEY, API_SECRET, {}, logger);
+
+const { data, error } = await sdk.createPayment(
+  paymentBody,
+  REDIRECT_URI,
+  "192.0.2.123"
 );
 ```
 
-## Customization
-You can configure which fields are masked:
-
-```javascript
-logger.maskSensitiveData = true;
-logger.maskBodyFields = ["client_id", "client_secret", "access_token"];
-logger.maskHeaderFields = ["authorization"];
-```
 
 ## Example output
 ```
